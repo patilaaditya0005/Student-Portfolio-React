@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#080808" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Explore Aaditya Patil’s programming languages, tools, and technologies." />
+
+    <title>Skills | Aaditya Patil</title>
+
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="page-container">
+      <!-- Header -->
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          AP <span>.</span>
+        </a>
+
+        <nav aria-label="Main navigation" class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="education.html">Education</a>
+          <a class="active" href="skills.html" aria-current="page">Skills</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <main id="main-content" class="content-page">
+        <!-- Page heading -->
+        <section class="page-heading">
+          <p class="eyebrow">TOOLS IN MY TOOLKIT</p>
+          <h1>My <span>Skills</span></h1>
+          <p>
+            Technologies I'm learning and using as a Computer Science student.
+          </p>
+        </section>
+
+        <!-- Search and filters -->
+        <section class="panel skill-explorer">
+          <p class="eyebrow">EXPLORE MY TOOLKIT</p>
+          <h2>Find a Skill</h2>
+
+          <label class="skill-search-label" for="skillSearch">
+            Search by skill name
+          </label>
+
+          <input
+            type="search"
+            id="skillSearch"
+            placeholder="Try Python, HTML, Git..."
+            autocomplete="off"
+          />
+
+          <div class="skill-filters" aria-label="Filter skills">
+            <button
+              type="button"
+              class="skill-filter active"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+
+            <button
+              type="button"
+              class="skill-filter"
+              data-filter="programming"
+              aria-pressed="false"
+            >
+              Programming
+            </button>
+
+            <button
+              type="button"
+              class="skill-filter"
+              data-filter="tools"
+              aria-pressed="false"
+            >
+              Tools &amp; Technologies
+            </button>
+          </div>
+
+          <p id="skillCount" class="muted" aria-live="polite">
+            Showing 12 skills
+          </p>
+        </section>
+
+        <!-- Skills grid -->
+        <div class="two-grid" id="skillGrid">
+          <!-- Programming -->
+          <section class="panel skill-category" data-category="programming">
+            <p class="eyebrow">01 / LANGUAGES</p>
+            <h2>Programming</h2>
+
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>C</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>C++</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>Python</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>HTML &amp; CSS</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>JavaScript</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>SQL</span>
+                <span class="skill-level">Learning</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tools and technologies -->
+          <section class="panel skill-category" data-category="tools">
+            <p class="eyebrow">02 / WORKFLOW</p>
+            <h2>Tools &amp; Technologies</h2>
+
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>Visual Studio Code</span>
+                <span class="skill-level">Using</span>
+              </div>
+
+              <div class="skill-item">
+                <span>Git &amp; GitHub</span>
+                <span class="skill-level">Using</span>
+              </div>
+
+              <div class="skill-item">
+                <span>Jupyter Notebook</span>
+                <span class="skill-level">Using</span>
+              </div>
+
+              <div class="skill-item">
+                <span>Google Colab</span>
+                <span class="skill-level">Using</span>
+              </div>
+
+              <div class="skill-item">
+                <span>MySQL</span>
+                <span class="skill-level">Learning</span>
+              </div>
+
+              <div class="skill-item">
+                <span>Machine Learning</span>
+                <span class="skill-level">Learning</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- No results message -->
+        <p id="noSkills" class="panel muted" hidden>
+          No matching skills found. Try another search.
+        </p>
+
+        <!-- Learning note -->
+        <section class="panel">
+          <h2>Always Learning</h2>
+          <p class="muted">
+            I'm continuously improving these skills through coursework, coding
+            practice, and personal projects. The labels describe my current
+            learning focus, not professional proficiency.
+          </p>
+        </section>
+
+        <!-- Back to top -->
+        <button
+          id="backtotop"
+          type="button"
+          aria-label="Back to top"
+        >
+          ↑ Top
+        </button>
+      </main>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <span>&copy; 2026 Aaditya Patil</span>
+        <a href="projects.html">Next &uarr;</a>
+      </footer>
+    </div>
+  </body>
+</html>

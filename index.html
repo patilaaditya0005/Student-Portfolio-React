@@ -1,13 +1,115 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>react-home-practice</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#080808" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      content="Aaditya Patil &mdash; Computer Science student, aspiring software developer, and AI enthusiast."
+      name="description"
+    />
+    <title>Aaditya Patil | Portfolio</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="react-home-practice/dist/assets/index-BlxneJ4Y.css">
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="home-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="page-container">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          AP
+          <span> . </span>
+        </a>
+        <nav aria-label="Main navigation" class="site-nav">
+          <a class="active" href="index.html" aria-current="page"> Home </a>
+          <a href="about.html"> About </a>
+          <a href="education.html"> Education </a>
+          <a href="skills.html"> Skills </a>
+          <a href="projects.html"> Projects </a>
+          <a href="contact.html"> Contact </a>
+        </nav>
+      </header>
+      <main id="main-content">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              COMPUTER SCIENCE STUDENT &middot; AI ENTHUSIAST
+            </p>
+            <h1 id="title">
+              Hi, I'm
+              <span> Aaditya Patil. </span>
+              <br />
+              Building my future
+              <br />
+              one line at a time.
+            </h1>
+            <button id="changeBtn" type="button">
+              Change Heading
+            </button>
+            <p class="eyebrow">
+              <span id="typingText">Computer Science Student</span>
+            </p>
+            <p class="hero-description">
+              I&rsquo;m a Computer Science student at MIT ADT University,
+              learning Python, DSA, AI, and web development while building
+              practical projects.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-light" href="projects.html">
+                Explore my work
+                <span> &nearrow; </span>
+              </a>
+              <a class="button button-outline" href="contact.html">
+                Let's connect
+              </a>
+            </div>
+            <p class="hero-note">
+              <span class="status-dot"> </span>
+              Currently learning &middot; Open to opportunities
+            </p>
+          </div>
+          <div id="learning-react-root"></div>
+          <div class="hero-portrait-wrap">
+            <div class="portrait-frame">
+              <img
+                alt="Aaditya Patil portrait"
+                class="hero-portrait"
+                fetchpriority="high"
+                decoding="async"
+                src="assets/portrait-cinematic.jpeg"
+              />
+            </div>
+            <span class="portrait-caption"> LEARN. BUILD. IMPROVE. </span>
+          </div>
+        </section>
+        <section class="home-intro">
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2>
+            Curious mind.
+            <span> Consistent progress. </span>
+          </h2>
+          <p>
+            My goal is to become a strong software developer by strengthening
+            problem-solving skills and creating useful, real-world projects.
+          </p>
+          <a class="text-link" href="about.html">
+            More about me
+            <span> &rarr; </span>
+          </a>
+        </section>
+      </main>
+      <button id="backtotop" type="button" aria-label="Back to top">
+        ↑ Top
+      </button>
+      <footer class="site-footer">
+        <span> &copy; 2026 Aaditya Patil </span>
+        <a href="mailto:patilaaditya0005@gmail.com">
+          patilaaditya0005@gmail.com
+        </a>
+        <span> Made with HTML &amp; CSS </span>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+    <script type="module" src="react-home-practice/dist/assets/index-0rdFMBIS.js"></script>
   </body>
 </html>
