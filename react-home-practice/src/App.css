@@ -582,3 +582,182 @@
     opacity: 0;
   }
 }
+
+
+/* ===== FINAL HOME PAGE POLISH ===== */
+
+/* Smooth scrolling and consistent section spacing */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 28px;
+}
+
+.portfolio {
+  overflow-x: clip;
+}
+
+.portfolio section {
+  scroll-margin-top: 28px;
+}
+
+.portfolio-intro,
+.goals-section,
+.projects-showcase {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+/* Better keyboard accessibility */
+.portfolio a:focus-visible {
+  outline: 2px solid #f5f5f5;
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+/* Cleaner navigation interaction */
+.portfolio-nav a {
+  position: relative;
+  padding: 5px 0;
+}
+
+.portfolio-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: #f5f5f5;
+  transition: right 0.22s ease;
+}
+
+.portfolio-nav a:hover::after,
+.portfolio-nav a:focus-visible::after {
+  right: 0;
+}
+
+/* Consistent goal cards */
+.goal-grid {
+  align-items: stretch;
+}
+
+.goal-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.goal-card .project-tags {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+/* Consistent project card layout */
+.project-showcase-grid {
+  align-items: stretch;
+}
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.showcase-card h3 {
+  overflow-wrap: anywhere;
+}
+
+.showcase-card > p {
+  flex: 1;
+}
+
+.showcase-link {
+  align-self: flex-start;
+  padding: 5px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.showcase-link:hover,
+.showcase-link:focus-visible {
+  border-bottom-color: currentColor;
+  opacity: 0.8;
+}
+
+.github-profile-link .action-secondary {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.github-profile-link .action-secondary:hover {
+  transform: translateY(-2px);
+}
+
+/* Portrait and hero refinement */
+.portrait-frame {
+  box-shadow: 0 18px 60px #00000030;
+}
+
+.portfolio-description {
+  line-height: 1.85;
+}
+
+/* Footer polish */
+.portfolio-footer {
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* Tablet and mobile */
+@media (max-width: 760px) {
+  .portfolio-intro,
+  .goals-section,
+  .projects-showcase {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .portfolio-nav {
+    gap: 10px 18px;
+  }
+
+  .portfolio-hero {
+    padding-top: 42px;
+  }
+
+  .portrait-frame {
+    height: min(105vw, 390px);
+  }
+
+  .portrait-stamp {
+    max-width: calc(100% - 12px);
+    right: 0;
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .portfolio {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .portfolio-actions > a {
+    width: 100%;
+  }
+
+  .showcase-card {
+    padding: 20px;
+  }
+
+  .portfolio-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

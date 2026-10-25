@@ -81,12 +81,19 @@ function GitHubProjects() {
           throw new Error("Unexpected GitHub response");
         }
 
-        const otherProjects = data
-          .filter(
-            (repo) =>
-              !repo.fork &&
-              repo.name.toLowerCase() !== "soil-advisory-system"
-          )
+       const excludedRepos = new Set([
+  "soil-advisory-system",
+  "student-portfolio-react",
+  "student-portfolio-javascript",
+  "student-portfolio-css",
+]);
+
+const otherProjects = data
+  .filter(
+    (repo) =>
+      !repo.fork &&
+      !excludedRepos.has(repo.name.toLowerCase())
+  )
           .map((repo) => ({
             ...repo,
             featured: false,
