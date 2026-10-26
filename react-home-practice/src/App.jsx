@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from "react";
 import "./App.css";
+import About from "./about";
 
 const roles = [
   "Computer Science Student",
@@ -81,26 +81,37 @@ function GitHubProjects() {
           throw new Error("Unexpected GitHub response");
         }
 
-       const excludedRepos = new Set([
-  "soil-advisory-system",
-  "student-portfolio-react",
-  "student-portfolio-javascript",
-  "student-portfolio-css",
-]);
-
-const otherProjects = data
-  .filter(
-    (repo) =>
-      !repo.fork &&
-      !excludedRepos.has(repo.name.toLowerCase())
-  )
+        const otherProjects = data
+          .filter(
+            (repo) =>
+              !repo.fork &&
+              repo.name.toLowerCase() !== "soil-advisory-system"
+          )
           .map((repo) => ({
             ...repo,
             featured: false,
           }));
 
+        const featuredRepo = data.find(
+          (repo) =>
+            repo.name.toLowerCase() === "soil-advisory-system"
+        );
+
+        const featuredProject = {
+          ...soilProject,
+          ...(featuredRepo
+            ? {
+                html_url: featuredRepo.html_url,
+                description:
+                  featuredRepo.description || soilProject.description,
+                language: featuredRepo.language,
+                stargazers_count: featuredRepo.stargazers_count,
+              }
+            : {}),
+        };
+
         if (!cancelled) {
-          setProjects([soilProject, ...otherProjects].slice(0, 6));
+          setProjects([featuredProject, ...otherProjects]);
         }
       } catch {
         if (!cancelled) {
@@ -124,27 +135,21 @@ const otherProjects = data
   return (
     <>
       {loading && (
-        <p className="projects-message">Loading GitHub projects...</p>
+        <p className="projects-message">
+          Loading GitHub projects...
+        </p>
       )}
 
       {error && (
         <p className="projects-message">
-          Showing the featured project. Other repositories could not load.
-        </p>
-      )}
-
-      {!loading && projects.length === 1 && !error && (
-        <p className="projects-message">
-          Your featured Soil Advisory System project is shown below.
+          GitHub repositories could not load. Showing the featured
+          project instead.
         </p>
       )}
 
       <div className="project-showcase-grid">
         {projects.map((project, index) => (
-          <article
-            className="showcase-card"
-            key={project.id}
-          >
+          <article className="showcase-card" key={project.id}>
             <div className="showcase-number">
               {project.featured
                 ? "FEATURED PROJECT / 01"
@@ -162,21 +167,20 @@ const otherProjects = data
             </h3>
 
             <p>
-              {project.featured
-                ? soilProject.description
-                : project.description ||
-                  "Explore this project on GitHub."}
+              {project.description ||
+                "Explore this project and its source code on GitHub."}
             </p>
 
             <div className="project-tags">
               {project.featured && <span>Soil Technology</span>}
 
-              {project.language && <span>{project.language}</span>}
+              {project.language && (
+                <span>{project.language}</span>
+              )}
 
-              {project.stargazers_count !== null &&
-                project.stargazers_count !== undefined && (
-                  <span>★ {project.stargazers_count}</span>
-                )}
+              {project.stargazers_count > 0 && (
+                <span>★ {project.stargazers_count}</span>
+              )}
             </div>
 
             <a
@@ -197,6 +201,11 @@ const otherProjects = data
 export default function App() {
   const animatedRole = useTypingEffect(roles);
 
+  // Render the full About page on /about.
+  if (window.location.pathname.replace(/\/+$/, "") === "/about") {
+    return <About />;
+  }
+
   return (
     <div className="portfolio">
       <header className="portfolio-header">
@@ -205,8 +214,10 @@ export default function App() {
         </a>
 
         <nav className="portfolio-nav" aria-label="Main navigation">
-          <a className="active" href="#home">Home</a>
-          <a href="#about">About</a>
+          <a className="active" href="#home">
+            Home
+          </a>
+          <a href="/about">About</a>
           <a href="#work">My Goals</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
@@ -282,6 +293,10 @@ export default function App() {
             strengthening my problem-solving skills and creating
             useful, real-world projects.
           </p>
+
+          <a className="showcase-link" href="/about">
+            Get to know me ↗
+          </a>
         </section>
 
         <section className="goals-section" id="work">
@@ -294,7 +309,7 @@ export default function App() {
           <div className="goal-grid">
             <article className="goal-card">
               <span>01 / PROGRAMMING</span>
-              <h3>Python & DSA</h3>
+              <h3>Python &amp; DSA</h3>
               <p>
                 Strengthening programming fundamentals and
                 problem-solving through consistent practice.
@@ -323,7 +338,7 @@ export default function App() {
 
             <article className="goal-card">
               <span>03 / EXPLORATION</span>
-              <h3>AI & Innovation</h3>
+              <h3>AI &amp; Innovation</h3>
               <p>
                 Exploring AI concepts and working towards practical
                 projects that solve real problems.
@@ -341,7 +356,7 @@ export default function App() {
           <p className="portfolio-eyebrow">SELECTED WORK</p>
 
           <h2 className="section-heading">
-            Projects & <span>experiments.</span>
+            Projects &amp; <span>experiments.</span>
           </h2>
 
           <p className="projects-intro">
