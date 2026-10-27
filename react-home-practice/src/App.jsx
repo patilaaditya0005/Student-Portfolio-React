@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import About from "./about";
+import Education from "./education";
 
 const roles = [
   "Computer Science Student",
@@ -13,8 +14,7 @@ const soilProject = {
   name: "Soil Advisory System",
   description:
     "Explore my Soil Advisory System project, its implementation, and source code on GitHub.",
-  html_url:
-    "https://github.com/patilaaditya0005/soil-advisory-system",
+  html_url: "https://github.com/patilaaditya0005/soil-advisory-system",
   language: null,
   stargazers_count: null,
   featured: true,
@@ -68,7 +68,7 @@ function GitHubProjects() {
     async function loadProjects() {
       try {
         const response = await fetch(
-          "https://api.github.com/users/patilaaditya0005/repos?sort=updated&per_page=100"
+          "https://api.github.com/users/patilaaditya0005/repos?sort=updated&per_page=100",
         );
 
         if (!response.ok) {
@@ -84,8 +84,7 @@ function GitHubProjects() {
         const otherProjects = data
           .filter(
             (repo) =>
-              !repo.fork &&
-              repo.name.toLowerCase() !== "soil-advisory-system"
+              !repo.fork && repo.name.toLowerCase() !== "soil-advisory-system",
           )
           .map((repo) => ({
             ...repo,
@@ -93,8 +92,7 @@ function GitHubProjects() {
           }));
 
         const featuredRepo = data.find(
-          (repo) =>
-            repo.name.toLowerCase() === "soil-advisory-system"
+          (repo) => repo.name.toLowerCase() === "soil-advisory-system",
         );
 
         const featuredProject = {
@@ -135,15 +133,13 @@ function GitHubProjects() {
   return (
     <>
       {loading && (
-        <p className="projects-message">
-          Loading GitHub projects...
-        </p>
+        <p className="projects-message">Loading GitHub projects...</p>
       )}
 
       {error && (
         <p className="projects-message">
-          GitHub repositories could not load. Showing the featured
-          project instead.
+          GitHub repositories could not load. Showing the featured project
+          instead.
         </p>
       )}
 
@@ -174,9 +170,7 @@ function GitHubProjects() {
             <div className="project-tags">
               {project.featured && <span>Soil Technology</span>}
 
-              {project.language && (
-                <span>{project.language}</span>
-              )}
+              {project.language && <span>{project.language}</span>}
 
               {project.stargazers_count > 0 && (
                 <span>★ {project.stargazers_count}</span>
@@ -206,6 +200,10 @@ export default function App() {
     return <About />;
   }
 
+  if (window.location.pathname.replace(/\/+$/, "") === "/education") {
+    return <Education />;
+  }
+
   return (
     <div className="portfolio">
       <header className="portfolio-header">
@@ -218,6 +216,7 @@ export default function App() {
             Home
           </a>
           <a href="/about">About</a>
+          <a href="/education">Education</a>
           <a href="#work">My Goals</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
@@ -245,9 +244,9 @@ export default function App() {
             </p>
 
             <p className="portfolio-description">
-              I'm a Computer Science student at MIT ADT University,
-              learning Python, DSA, AI, and web development while
-              building practical projects.
+              I'm a Computer Science student at MIT ADT University, learning
+              Python, DSA, AI, and web development while building practical
+              projects.
             </p>
 
             <div className="portfolio-actions">
@@ -273,9 +272,7 @@ export default function App() {
               />
             </div>
 
-            <span className="portrait-stamp">
-              LEARN. BUILD. IMPROVE.
-            </span>
+            <span className="portrait-stamp">LEARN. BUILD. IMPROVE.</span>
           </div>
         </section>
 
@@ -289,14 +286,21 @@ export default function App() {
           </h2>
 
           <p>
-            My goal is to become a strong software developer by
-            strengthening my problem-solving skills and creating
-            useful, real-world projects.
+            My goal is to become a strong software developer by strengthening my
+            problem-solving skills and creating useful, real-world projects.
           </p>
 
-          <a className="showcase-link" href="/about">
-            Get to know me ↗
-          </a>
+     
+<div className="intro-page-links">
+  <a className="showcase-link" href="/about">
+    Get to know me ↗
+  </a>
+
+  <a className="showcase-link" href="/education">
+    Explore my education ↗
+  </a>
+</div>
+
         </section>
 
         <section className="goals-section" id="work">
@@ -311,8 +315,8 @@ export default function App() {
               <span>01 / PROGRAMMING</span>
               <h3>Python &amp; DSA</h3>
               <p>
-                Strengthening programming fundamentals and
-                problem-solving through consistent practice.
+                Strengthening programming fundamentals and problem-solving
+                through consistent practice.
               </p>
 
               <div className="project-tags">
@@ -325,8 +329,8 @@ export default function App() {
               <span>02 / WEB DEVELOPMENT</span>
               <h3>React Portfolio</h3>
               <p>
-                Turning my existing portfolio into a responsive,
-                interactive React experience.
+                Turning my existing portfolio into a responsive, interactive
+                React experience.
               </p>
 
               <div className="project-tags">
@@ -340,8 +344,8 @@ export default function App() {
               <span>03 / EXPLORATION</span>
               <h3>AI &amp; Innovation</h3>
               <p>
-                Exploring AI concepts and working towards practical
-                projects that solve real problems.
+                Exploring AI concepts and working towards practical projects
+                that solve real problems.
               </p>
 
               <div className="project-tags">
@@ -381,9 +385,7 @@ export default function App() {
       <footer className="portfolio-footer" id="contact">
         <span>© 2026 Aaditya Patil</span>
 
-        <a href="mailto:patilaaditya0005@gmail.com">
-          Get in touch ↗
-        </a>
+        <a href="mailto:patilaaditya0005@gmail.com">Get in touch ↗</a>
       </footer>
     </div>
   );
