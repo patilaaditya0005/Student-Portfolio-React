@@ -68,14 +68,14 @@ export default function About() {
         </a>
 
         <nav className="about-nav" aria-label="Main navigation">
-          <a href="/">Home</a>
-          <a className="active" href="/about" aria-current="page">
-            About
-          </a>
-          <a href="/#work">My Goals</a>
-          <a href="/#projects">Projects</a>
-          <a href="/#contact">Contact</a>
-        </nav>
+  <a href="/">Home</a>
+  <a className="active" href="/about" aria-current="page">About</a>
+  <a href="/education">Education</a>
+  <a href="/skills">Skills</a>
+  <a href="/#work">My Goals</a>
+  <a href="/#projects">Projects</a>
+  <a href="/#contact">Contact</a>
+</nav>
       </header>
 
       <main className="about-main" id="main-content">
@@ -350,7 +350,7 @@ export default function About() {
           Get in touch ↗
         </a>
 
-        <a href="/#work">Explore my goals ↑</a>
+        <a href="/">Back to Home ↑</a>
       </footer>
     </div>
   );

@@ -68,15 +68,16 @@ export default function Education() {
           </a>
 
           <nav className="education-nav" aria-label="Main navigation">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a className="active" href="/education" aria-current="page">
-              Education
-            </a>
-            <a href="/#work">My Goals</a>
-            <a href="/#projects">Projects</a>
-            <a href="/#contact">Contact</a>
-          </nav>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/education" className="active" aria-current="page">
+    Education
+  </a>
+  <a href="/skills">Skills</a>
+  <a href="/#work">My Goals</a>
+  <a href="/#projects">Projects</a>
+  <a href="/#contact">Contact</a>
+</nav>
         </header>
 
         <main id="education-main">

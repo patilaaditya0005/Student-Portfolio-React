@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import About from "./about";
 import Education from "./education";
+import Skills from "./skills";
+
 
 const roles = [
   "Computer Science Student",
@@ -194,15 +196,11 @@ function GitHubProjects() {
 
 export default function App() {
   const animatedRole = useTypingEffect(roles);
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
 
-  // Render the full About page on /about.
-  if (window.location.pathname.replace(/\/+$/, "") === "/about") {
-    return <About />;
-  }
-
-  if (window.location.pathname.replace(/\/+$/, "") === "/education") {
-    return <Education />;
-  }
+  if (path === "/about") return <About />;
+  if (path === "/education") return <Education />;
+  if (path === "/skills") return <Skills />;
 
   return (
     <div className="portfolio">
@@ -217,6 +215,7 @@ export default function App() {
           </a>
           <a href="/about">About</a>
           <a href="/education">Education</a>
+          <a href="/skills">Skills</a>
           <a href="#work">My Goals</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
@@ -298,6 +297,10 @@ export default function App() {
 
   <a className="showcase-link" href="/education">
     Explore my education ↗
+  </a>
+
+  <a className="showcase-link" href="/skills">
+    Have a look on my Skills ↗
   </a>
 </div>
 

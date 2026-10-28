@@ -774,3 +774,39 @@ html {
 .intro-page-links .showcase-link {
   margin-top: 0;
 }
+
+.intro-page-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.intro-page-links .showcase-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.portfolio-portrait,
+.portrait-frame {
+  min-width: 0;
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.portfolio-nav a:focus-visible,
+.about-nav a:focus-visible,
+.education-nav a:focus-visible,
+.skills-nav a:focus-visible {
+  outline: 2px solid #c4f36b;
+  outline-offset: 5px;
+}
