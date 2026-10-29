@@ -1,9 +1,10 @@
+
 import { useEffect, useState } from "react";
 import "./App.css";
 import About from "./about";
 import Education from "./education";
 import Skills from "./skills";
-
+import Projects from "./projects";
 
 const roles = [
   "Computer Science Student",
@@ -70,7 +71,7 @@ function GitHubProjects() {
     async function loadProjects() {
       try {
         const response = await fetch(
-          "https://api.github.com/users/patilaaditya0005/repos?sort=updated&per_page=100",
+          "https://api.github.com/users/patilaaditya0005/repos?sort=updated&per_page=100"
         );
 
         if (!response.ok) {
@@ -86,7 +87,8 @@ function GitHubProjects() {
         const otherProjects = data
           .filter(
             (repo) =>
-              !repo.fork && repo.name.toLowerCase() !== "soil-advisory-system",
+              !repo.fork &&
+              repo.name.toLowerCase() !== "soil-advisory-system"
           )
           .map((repo) => ({
             ...repo,
@@ -94,7 +96,7 @@ function GitHubProjects() {
           }));
 
         const featuredRepo = data.find(
-          (repo) => repo.name.toLowerCase() === "soil-advisory-system",
+          (repo) => repo.name.toLowerCase() === "soil-advisory-system"
         );
 
         const featuredProject = {
@@ -171,7 +173,6 @@ function GitHubProjects() {
 
             <div className="project-tags">
               {project.featured && <span>Soil Technology</span>}
-
               {project.language && <span>{project.language}</span>}
 
               {project.stargazers_count > 0 && (
@@ -201,6 +202,9 @@ export default function App() {
   if (path === "/about") return <About />;
   if (path === "/education") return <Education />;
   if (path === "/skills") return <Skills />;
+  if (path === "/projects" || path === "/projects.html") {
+    return <Projects />;
+  }
 
   return (
     <div className="portfolio">
@@ -217,7 +221,7 @@ export default function App() {
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
           <a href="#work">My Goals</a>
-          <a href="#projects">Projects</a>
+          <a href="/projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
@@ -249,7 +253,7 @@ export default function App() {
             </p>
 
             <div className="portfolio-actions">
-              <a className="action-primary" href="#projects">
+              <a className="action-primary" href="/projects">
                 Explore my projects ↗
               </a>
 
@@ -271,7 +275,9 @@ export default function App() {
               />
             </div>
 
-            <span className="portrait-stamp">LEARN. BUILD. IMPROVE.</span>
+            <span className="portrait-stamp">
+              LEARN. BUILD. IMPROVE.
+            </span>
           </div>
         </section>
 
@@ -285,25 +291,23 @@ export default function App() {
           </h2>
 
           <p>
-            My goal is to become a strong software developer by strengthening my
-            problem-solving skills and creating useful, real-world projects.
+            My goal is to become a strong software developer by strengthening
+            my problem-solving skills and creating useful, real-world projects.
           </p>
 
-     
-<div className="intro-page-links">
-  <a className="showcase-link" href="/about">
-    Get to know me ↗
-  </a>
+          <div className="intro-page-links">
+            <a className="showcase-link" href="/about">
+              Get to know me ↗
+            </a>
 
-  <a className="showcase-link" href="/education">
-    Explore my education ↗
-  </a>
+            <a className="showcase-link" href="/education">
+              Explore my education ↗
+            </a>
 
-  <a className="showcase-link" href="/skills">
-    Have a look on my Skills ↗
-  </a>
-</div>
-
+            <a className="showcase-link" href="/skills">
+              Have a look on my Skills ↗
+            </a>
+          </div>
         </section>
 
         <section className="goals-section" id="work">
@@ -321,7 +325,6 @@ export default function App() {
                 Strengthening programming fundamentals and problem-solving
                 through consistent practice.
               </p>
-
               <div className="project-tags">
                 <span>Python</span>
                 <span>Algorithms</span>
@@ -335,7 +338,6 @@ export default function App() {
                 Turning my existing portfolio into a responsive, interactive
                 React experience.
               </p>
-
               <div className="project-tags">
                 <span>React</span>
                 <span>CSS</span>
@@ -350,7 +352,6 @@ export default function App() {
                 Exploring AI concepts and working towards practical projects
                 that solve real problems.
               </p>
-
               <div className="project-tags">
                 <span>AI</span>
                 <span>Learning</span>
@@ -387,7 +388,6 @@ export default function App() {
 
       <footer className="portfolio-footer" id="contact">
         <span>© 2026 Aaditya Patil</span>
-
         <a href="mailto:patilaaditya0005@gmail.com">Get in touch ↗</a>
       </footer>
     </div>
