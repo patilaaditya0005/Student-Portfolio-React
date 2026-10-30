@@ -810,3 +810,216 @@ html {
   outline: 2px solid #c4f36b;
   outline-offset: 5px;
 }
+
+
+/* =========================================
+   REACT CONTACT PAGE
+========================================= */
+
+.contact-page {
+  min-height: 100vh;
+}
+
+.contact-content {
+  padding: 62px 0 90px;
+}
+
+.contact-heading {
+  max-width: 760px;
+  margin-bottom: 44px;
+  animation: portfolioEnter 0.65s ease both;
+}
+
+.contact-heading h1 {
+  margin: 12px 0 18px;
+  font: 800 clamp(2.8rem, 6vw, 4.8rem)/1.12 "Manrope", sans-serif;
+  letter-spacing: -0.065em;
+}
+
+.contact-heading h1 span {
+  color: #929292;
+}
+
+.contact-heading > p:last-child {
+  max-width: 620px;
+  color: #c1c1c1;
+  font-size: 1.05rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.contact-note,
+.contact-form {
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid #292929;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #151515, #0e0e0e);
+  transition: border-color 0.25s ease;
+}
+
+.contact-note:hover,
+.contact-form:hover {
+  border-color: #555;
+}
+
+.contact-note h2 {
+  margin: 14px 0;
+  font: 700 clamp(1.8rem, 4vw, 2.8rem)/1.2 "Manrope", sans-serif;
+  letter-spacing: -0.045em;
+}
+
+.contact-note > p:not(.portfolio-eyebrow) {
+  color: #a2a2a2;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #777;
+  overflow-wrap: anywhere;
+  color: #f5f5f5;
+}
+
+.contact-copy-button,
+.contact-submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background: #f2f2f2;
+  color: #080808;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.contact-copy-button {
+  display: flex;
+  margin-top: 18px;
+}
+
+.contact-copy-button:hover,
+.contact-submit-button:hover {
+  transform: translateY(-3px);
+  background: #d2d2d2;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.contact-form label {
+  margin-top: 7px;
+  color: #ddd;
+  font-size: 0.87rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #393939;
+  border-radius: 5px;
+  outline: none;
+  background: #090909;
+  color: #f5f5f5;
+  font: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #aaa;
+}
+
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-form select {
+  color-scheme: dark;
+}
+
+.contact-message-meta {
+  display: flex;
+  justify-content: flex-end;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.contact-submit-button {
+  align-self: flex-start;
+  margin-top: 12px;
+}
+
+.contact-form-note {
+  min-height: 0;
+  margin: 4px 0 0;
+  color: #888;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.contact-form-note:empty {
+  display: none;
+}
+
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible,
+.contact-copy-button:focus-visible,
+.contact-submit-button:focus-visible {
+  outline: 2px solid #f5f5f5;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .contact-content {
+    padding: 45px 0 65px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-heading {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-note,
+  .contact-form {
+    padding: 22px 18px;
+  }
+
+  .contact-submit-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page *,
+  .contact-page *::before,
+  .contact-page *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

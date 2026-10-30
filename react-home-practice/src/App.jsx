@@ -5,6 +5,7 @@ import About from "./about";
 import Education from "./education";
 import Skills from "./skills";
 import Projects from "./projects";
+import Contact from "./contact";
 
 const roles = [
   "Computer Science Student",
@@ -137,7 +138,9 @@ function GitHubProjects() {
   return (
     <>
       {loading && (
-        <p className="projects-message">Loading GitHub projects...</p>
+        <p className="projects-message">
+          Loading GitHub projects...
+        </p>
       )}
 
       {error && (
@@ -174,7 +177,6 @@ function GitHubProjects() {
             <div className="project-tags">
               {project.featured && <span>Soil Technology</span>}
               {project.language && <span>{project.language}</span>}
-
               {project.stargazers_count > 0 && (
                 <span>★ {project.stargazers_count}</span>
               )}
@@ -199,30 +201,35 @@ export default function App() {
   const animatedRole = useTypingEffect(roles);
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
 
+  // Page routing
   if (path === "/about") return <About />;
   if (path === "/education") return <Education />;
   if (path === "/skills") return <Skills />;
+
   if (path === "/projects" || path === "/projects.html") {
     return <Projects />;
   }
 
+  if (path === "/contact" || path === "/contact.html") {
+    return <Contact />;
+  }
+
+  // Home page
   return (
     <div className="portfolio">
       <header className="portfolio-header">
-        <a className="portfolio-brand" href="#home">
+        <a className="portfolio-brand" href="/">
           AP<span>.</span>
         </a>
 
         <nav className="portfolio-nav" aria-label="Main navigation">
-          <a className="active" href="#home">
-            Home
-          </a>
+          <a className="active" href="/">Home</a>
           <a href="/about">About</a>
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
           <a href="#work">My Goals</a>
           <a href="/projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="/contact">Contact</a>
         </nav>
       </header>
 
@@ -257,7 +264,7 @@ export default function App() {
                 Explore my projects ↗
               </a>
 
-              <a className="action-secondary" href="#contact">
+              <a className="action-secondary" href="/contact">
                 Let's connect
               </a>
             </div>
@@ -321,10 +328,12 @@ export default function App() {
             <article className="goal-card">
               <span>01 / PROGRAMMING</span>
               <h3>Python &amp; DSA</h3>
+
               <p>
                 Strengthening programming fundamentals and problem-solving
                 through consistent practice.
               </p>
+
               <div className="project-tags">
                 <span>Python</span>
                 <span>Algorithms</span>
@@ -334,10 +343,12 @@ export default function App() {
             <article className="goal-card">
               <span>02 / WEB DEVELOPMENT</span>
               <h3>React Portfolio</h3>
+
               <p>
                 Turning my existing portfolio into a responsive, interactive
                 React experience.
               </p>
+
               <div className="project-tags">
                 <span>React</span>
                 <span>CSS</span>
@@ -348,10 +359,12 @@ export default function App() {
             <article className="goal-card">
               <span>03 / EXPLORATION</span>
               <h3>AI &amp; Innovation</h3>
+
               <p>
                 Exploring AI concepts and working towards practical projects
                 that solve real problems.
               </p>
+
               <div className="project-tags">
                 <span>AI</span>
                 <span>Learning</span>
@@ -388,7 +401,7 @@ export default function App() {
 
       <footer className="portfolio-footer" id="contact">
         <span>© 2026 Aaditya Patil</span>
-        <a href="mailto:patilaaditya0005@gmail.com">Get in touch ↗</a>
+        <a href="/contact">Get in touch ↗</a>
       </footer>
     </div>
   );

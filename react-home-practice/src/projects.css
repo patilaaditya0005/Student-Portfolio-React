@@ -1,15 +1,178 @@
 
+/* =========================================
+   PROJECTS PAGE - GLOBAL LAYOUT
+========================================= */
+
 .projects-page {
+  min-height: 100vh;
+  width: 100%;
   color: #f5f5f5;
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(145, 170, 130, 0.07), transparent 35%),
+    #090a0b;
+  font-family: inherit;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
+.projects-page *,
+.projects-page *::before,
+.projects-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SKIP LINK
+========================================= */
+
+.projects-page .skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  z-index: 1000;
+  padding: 12px 18px;
+  color: #080808;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.projects-page .skip-link:focus {
+  top: 15px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.projects-page .site-header {
+  width: min(1200px, calc(100% - 64px));
+  min-height: 82px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.projects-page .brand {
+  flex-shrink: 0;
+  color: #f5f5f5;
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  text-decoration: none;
+}
+
+.projects-page .brand span {
+  color: #b5d6a4;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.projects-page .site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.projects-page .site-nav a {
+  position: relative;
+  padding: 10px 0;
+  color: #a8a8a8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.projects-page .site-nav a:hover,
+.projects-page .site-nav a.active {
+  color: #ffffff;
+}
+
+.projects-page .site-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 2px;
+  border-radius: 5px;
+  background: #b5d6a4;
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.projects-page .content-page {
+  width: min(1200px, calc(100% - 64px));
+  min-height: 65vh;
+  margin: 0 auto;
+  padding: 75px 0 55px;
+}
+
+.projects-page .page-heading {
+  margin-bottom: 55px;
+}
+
+.projects-page .eyebrow {
+  margin: 0 0 16px;
+  color: #a7c99a;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.projects-page .page-heading h1 {
+  margin: 0;
+  color: #f5f5f5;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.065em;
+}
+
+.projects-page .page-heading h1 span {
+  color: #b5d6a4;
+}
+
+.projects-page .page-heading > p:last-child {
+  margin: 20px 0 0;
+  color: #a5a5a5;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   PROJECT EXPLORER
+========================================= */
+
 .projects-page .project-explorer {
-  margin-bottom: 24px;
+  margin-bottom: 30px;
+  padding: 30px;
+  border: 1px solid #292929;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #151515, #101010);
+}
+
+.projects-page .project-explorer h2 {
+  margin: 0 0 22px;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
 }
 
 .projects-page .project-search-label {
   display: block;
   margin: 14px 0 8px;
+  color: #dedede;
   font-size: 14px;
 }
 
@@ -17,9 +180,9 @@
   display: block;
   width: 100%;
   max-width: 450px;
-  min-height: 46px;
+  min-height: 48px;
   padding: 12px 15px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   border: 1px solid #444;
   border-radius: 8px;
   background: #090909;
@@ -27,8 +190,12 @@
   font: inherit;
 }
 
+.projects-page #projectSearch::placeholder {
+  color: #777;
+}
+
 .projects-page #projectSearch:focus-visible {
-  outline: 2px solid #aaa;
+  outline: 2px solid #b5d6a4;
   outline-offset: 3px;
 }
 
@@ -41,12 +208,13 @@
 
 .projects-page .project-filter,
 .projects-page .project-action-button {
-  padding: 10px 15px;
+  padding: 11px 17px;
   border: 1px solid #444;
-  border-radius: 7px;
+  border-radius: 8px;
   background: transparent;
   color: #f5f5f5;
   font: inherit;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
@@ -70,19 +238,23 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
 .projects-page .project-explorer-actions p {
   margin: 0;
 }
 
+/* =========================================
+   PROJECT CARDS
+========================================= */
+
 .projects-page .project-card {
   padding: 0;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   overflow: hidden;
   border: 1px solid #2c2c2c;
-  border-radius: 10px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #151515, #0e0e0e);
   transition: border-color 0.25s ease;
 }
@@ -95,7 +267,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 24px 28px;
+  padding: 25px 28px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -127,8 +299,12 @@
   white-space: nowrap;
 }
 
+/* =========================================
+   PROJECT DETAILS
+========================================= */
+
 .projects-page .project-details {
-  padding: 24px 28px 30px;
+  padding: 28px;
   border-top: 1px solid #2c2c2c;
   animation: projectFadeUp 0.35s ease both;
 }
@@ -136,6 +312,12 @@
 .projects-page .project-details > p {
   max-width: 850px;
   color: #c1c1c1;
+  line-height: 1.8;
+}
+
+.projects-page .project-details h3 {
+  margin-top: 28px;
+  font-size: 1.2rem;
 }
 
 .projects-page .project-gallery {
@@ -150,7 +332,6 @@
   margin: 0;
 }
 
-
 .projects-page .project-gallery img {
   display: block;
   width: 100%;
@@ -161,7 +342,7 @@
   object-position: center;
   background: #080808;
   border: 1px solid #333;
-  border-radius: 6px;
+  border-radius: 8px;
   filter: none;
   transition: transform 0.3s ease;
 }
@@ -169,7 +350,6 @@
 .projects-page .project-gallery img:hover {
   transform: scale(1.02);
 }
-
 
 .projects-page figcaption {
   margin-top: 7px;
@@ -183,27 +363,33 @@
   max-height: 520px;
   margin-top: 15px;
   border: 1px solid #333;
-  border-radius: 7px;
+  border-radius: 8px;
   background: #000;
 }
 
 .projects-page .project-github-link {
+  display: inline-flex;
   margin-top: 18px;
+  text-decoration: none;
 }
+
+/* =========================================
+   BACK HOME
+========================================= */
 
 .projects-page .projects-home-action {
   display: flex;
   justify-content: center;
-  margin: 35px 0 10px;
+  margin: 45px 0 15px;
 }
 
 .projects-page .back-home-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 22px;
+  padding: 13px 23px;
   border: 1px solid #444;
-  border-radius: 7px;
+  border-radius: 8px;
   background: #171717;
   color: #f5f5f5;
   font-size: 0.9rem;
@@ -225,6 +411,10 @@
   outline-offset: 4px;
 }
 
+/* =========================================
+   BACK TO TOP
+========================================= */
+
 .projects-page .projects-back-to-top {
   display: block;
   margin: 20px 0 0 auto;
@@ -244,6 +434,53 @@
   transform: translateY(-2px);
 }
 
+/* =========================================
+   FOOTER
+========================================= */
+
+.projects-page .site-footer {
+  width: min(1200px, calc(100% - 64px));
+  min-height: 85px;
+  margin: 30px auto 0;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  color: #929292;
+  font-size: 0.88rem;
+}
+
+.projects-page .site-footer a {
+  color: #d6d6d6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.projects-page .site-footer a:hover {
+  color: #b5d6a4;
+}
+
+/* =========================================
+   UTILITIES
+========================================= */
+
+.projects-page .muted {
+  color: #999;
+}
+
+.projects-page .panel {
+  border: 1px solid #292929;
+  border-radius: 14px;
+  background: #121212;
+  padding: 24px;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
 @keyframes projectFadeUp {
   from {
     opacity: 0;
@@ -256,7 +493,69 @@
   }
 }
 
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .projects-page .site-header {
+    width: calc(100% - 40px);
+    gap: 20px;
+  }
+
+  .projects-page .site-nav {
+    gap: 17px;
+  }
+
+  .projects-page .site-nav a {
+    font-size: 0.83rem;
+  }
+
+  .projects-page .content-page {
+    width: calc(100% - 40px);
+  }
+
+  .projects-page .site-footer {
+    width: calc(100% - 40px);
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
 @media (max-width: 760px) {
+  .projects-page .site-header {
+    width: calc(100% - 32px);
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .projects-page .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px 20px;
+  }
+
+  .projects-page .site-nav a {
+    font-size: 0.82rem;
+  }
+
+  .projects-page .content-page {
+    width: calc(100% - 32px);
+    padding: 55px 0 35px;
+  }
+
+  .projects-page .page-heading {
+    margin-bottom: 35px;
+  }
+
+  .projects-page .project-explorer {
+    padding: 22px;
+  }
+
   .projects-page .project-summary {
     gap: 10px;
     padding: 20px 17px;
@@ -278,9 +577,25 @@
   .projects-page .open-label {
     font-size: 0.72rem;
   }
+
+  .projects-page .site-footer {
+    width: calc(100% - 32px);
+  }
 }
 
 @media (max-width: 480px) {
+  .projects-page .site-nav {
+    gap: 8px 15px;
+  }
+
+  .projects-page .site-nav a {
+    font-size: 0.78rem;
+  }
+
+  .projects-page .page-heading h1 {
+    font-size: 2.7rem;
+  }
+
   .projects-page .project-summary {
     flex-wrap: wrap;
   }
@@ -298,7 +613,17 @@
     padding: 9px 11px;
     font-size: 14px;
   }
+
+  .projects-page .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .projects-page .project-card,
