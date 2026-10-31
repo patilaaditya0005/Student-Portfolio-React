@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./contact.css";
 
 const EMAIL = "patilaaditya0005@gmail.com";
+const MAX_MESSAGE_LENGTH = 1000;
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -12,8 +13,10 @@ export default function Contact() {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
   const [copyStatus, setCopyStatus] = useState("");
   const [formStatus, setFormStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,7 +26,36 @@ export default function Contact() {
       [name]: value,
     }));
 
+    setErrors((current) => ({
+      ...current,
+      [name]: "",
+    }));
+
     setFormStatus("");
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (form.name.trim().length < 2) {
+      newErrors.name = "Please enter your full name.";
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(form.email.trim())) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (form.message.trim().length < 10) {
+      newErrors.message = "Message must contain at least 10 characters.";
+    }
+
+    if (form.message.trim().length > MAX_MESSAGE_LENGTH) {
+      newErrors.message = "Message cannot exceed 1000 characters.";
+    }
+
+    return newErrors;
   };
 
   const handleCopyEmail = async () => {
@@ -31,30 +63,47 @@ export default function Contact() {
       await navigator.clipboard.writeText(EMAIL);
       setCopyStatus("Email copied successfully!");
     } catch {
-      setCopyStatus(`Please copy the email manually: ${EMAIL}`);
+      setCopyStatus(`Please copy manually: ${EMAIL}`);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const subject = `${form.reason} - Contact from ${form.name}`;
+    if (submitting) return;
+
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFormStatus("Please correct the highlighted fields.");
+      return;
+    }
+
+    const subject = `${form.reason} - Contact from ${form.name.trim()}`;
 
     const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
+      `Name: ${form.name.trim()}`,
+      `Email: ${form.email.trim()}`,
       `Reason: ${form.reason}`,
       "",
       "Message:",
-      form.message,
+      form.message.trim(),
     ].join("\n");
 
     const mailtoLink = `mailto:${EMAIL}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
 
+    setSubmitting(true);
     setFormStatus("Opening your default email application...");
+
     window.location.href = mailtoLink;
+
+    // Reset the button state if the email application does not open.
+    window.setTimeout(() => {
+      setSubmitting(false);
+    }, 1500);
   };
 
   return (
@@ -83,8 +132,8 @@ export default function Contact() {
           </h1>
 
           <p>
-            Interested in a project, internship, or collaboration? Send me a
-            message.
+            Interested in a project, internship, or collaboration?
+            Send me a message.
           </p>
         </section>
 
@@ -95,8 +144,9 @@ export default function Contact() {
             <h2>Good things start with a conversation.</h2>
 
             <p>
-              I'm interested in learning opportunities, project collaborations,
-              and connecting with people who enjoy building things.
+              I'm interested in learning opportunities, project
+              collaborations, and connecting with people who enjoy
+              building things.
             </p>
 
             <a className="contact-email" href={`mailto:${EMAIL}`}>
@@ -116,7 +166,11 @@ export default function Contact() {
             </p>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <label htmlFor="contact-name">Full name</label>
 
             <input
@@ -129,8 +183,16 @@ export default function Contact() {
               maxLength={80}
               value={form.name}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               required
             />
+
+            {errors.name && (
+              <span className="contact-error" id="name-error">
+                {errors.name}
+              </span>
+            )}
 
             <label htmlFor="contact-email">Email address</label>
 
@@ -143,8 +205,16 @@ export default function Contact() {
               maxLength={254}
               value={form.email}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               required
             />
+
+            {errors.email && (
+              <span className="contact-error" id="email-error">
+                {errors.email}
+              </span>
+            )}
 
             <label htmlFor="contact-reason">Reason for contact</label>
 
@@ -168,27 +238,49 @@ export default function Contact() {
               name="message"
               placeholder="Tell me a little about it..."
               minLength={10}
-              maxLength={1000}
+              maxLength={MAX_MESSAGE_LENGTH}
               rows={5}
               value={form.message}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={
+                errors.message ? "message-error" : undefined
+              }
               required
             />
 
+            {errors.message && (
+              <span className="contact-error" id="message-error">
+                {errors.message}
+              </span>
+            )}
+
             <div className="contact-message-meta">
-              <span>{form.message.length} / 1000 characters</span>
+              <span>
+                {form.message.length} / {MAX_MESSAGE_LENGTH} characters
+              </span>
             </div>
 
-            <button className="contact-submit-button" type="submit">
-              Send message <span>↗</span>
+            <button
+              className="contact-submit-button"
+              type="submit"
+              disabled={submitting}
+            >
+              {submitting ? "Opening email..." : "Send message"}
+              <span>↗</span>
             </button>
 
-            <p className="contact-form-note" role="status" aria-live="polite">
+            <p
+              className="contact-form-note"
+              role="status"
+              aria-live="polite"
+            >
               {formStatus}
             </p>
 
             <p className="contact-form-note">
-              This opens your default email app. Direct website form submissions
+              Submitting opens your default email application with
+              your message pre-filled. Direct website submissions
               require a backend or form service.
             </p>
           </form>

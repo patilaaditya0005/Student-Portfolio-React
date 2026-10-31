@@ -1,4 +1,12 @@
 
+/* =========================================
+   CONTACT PAGE
+========================================= */
+
+.contact-page {
+  min-height: 100vh;
+}
+
 .contact-content {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
@@ -29,6 +37,10 @@
   line-height: 1.8;
 }
 
+/* =========================================
+   CONTACT LAYOUT
+========================================= */
+
 .contact-layout {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -44,6 +56,10 @@
   border-radius: 22px;
   background: var(--card, rgba(255,255,255,.035));
 }
+
+/* =========================================
+   LEFT CONTACT INFO
+========================================= */
 
 .contact-note h2 {
   margin: 18px 0;
@@ -66,6 +82,14 @@
   overflow-wrap: anywhere;
 }
 
+.contact-email:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
 .contact-copy-button,
 .contact-submit-button {
   display: inline-flex;
@@ -81,14 +105,39 @@
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease;
 }
 
 .contact-copy-button:hover,
-.contact-submit-button:hover {
+.contact-submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
   border-color: var(--accent, #a6e3a1);
 }
+
+.contact-submit-button {
+  width: fit-content;
+  margin-top: 10px;
+  border-color: transparent;
+  color: #101510;
+  background: var(--accent, #a6e3a1);
+}
+
+.contact-submit-button:hover:not(:disabled) {
+  background: #c3f2be;
+}
+
+.contact-submit-button:disabled {
+  opacity: .65;
+  cursor: wait;
+  transform: none;
+}
+
+/* =========================================
+   FORM
+========================================= */
 
 .contact-form {
   display: flex;
@@ -115,15 +164,18 @@
   background: rgba(0,0,0,.16);
   font: inherit;
   box-sizing: border-box;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
 
 .contact-form select option {
   color: #111;
+  background: #fff;
 }
 
 .contact-form textarea {
   min-height: 145px;
   resize: vertical;
+  line-height: 1.6;
 }
 
 .contact-form input:focus,
@@ -133,6 +185,27 @@
   box-shadow: 0 0 0 3px rgba(166,227,161,.12);
 }
 
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: #ef7777;
+}
+
+/* =========================================
+   VALIDATION
+========================================= */
+
+.contact-error {
+  display: block;
+  margin-top: -5px;
+  color: #ff8585;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   MESSAGE COUNTER
+========================================= */
+
 .contact-message-meta {
   display: flex;
   justify-content: flex-end;
@@ -140,17 +213,9 @@
   font-size: .8rem;
 }
 
-.contact-submit-button {
-  width: fit-content;
-  margin-top: 10px;
-  border-color: transparent;
-  color: #101510;
-  background: var(--accent, #a6e3a1);
-}
-
-.contact-submit-button:hover {
-  background: #c3f2be;
-}
+/* =========================================
+   STATUS MESSAGES
+========================================= */
 
 .contact-form-note {
   min-height: 1em;
@@ -159,6 +224,10 @@
   font-size: .82rem;
   line-height: 1.6;
 }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
 
 @media (max-width: 760px) {
   .contact-content {
@@ -181,9 +250,31 @@
   }
 }
 
+@media (max-width: 480px) {
+  .contact-heading h1 {
+    font-size: 3rem;
+  }
+
+  .contact-note,
+  .contact-form {
+    padding: 20px;
+  }
+
+  .contact-submit-button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .contact-copy-button,
-  .contact-submit-button {
+  .contact-submit-button,
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
     transition: none;
   }
 }
