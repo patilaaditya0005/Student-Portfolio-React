@@ -1,4 +1,4 @@
-
+// Completing the project by tomorrow or day after tomorrow 
 import { useEffect, useState } from "react";
 import "./App.css";
 import About from "./about";
