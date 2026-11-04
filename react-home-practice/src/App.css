@@ -1,5 +1,6 @@
-/*Updating the little bit css*/ 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+/*Updating the little bit css*/
+/*IMPROVING CSS FOR DEPLOYMENT PURPOSE */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 #root {
   width: 100%;
@@ -13,10 +14,9 @@
   --line: #292929;
 
   min-height: 100vh;
-  padding: 0  max(24px, calc((100vw - 1160px) / 2));
+  padding: 0 max(24px, calc((100vw - 1160px) / 2));
   background:
-    radial-gradient(ellipse at 80% 10%, #202020 0, transparent 38%),
-    #080808;
+    radial-gradient(ellipse at 80% 10%, #202020 0, transparent 38%), #080808;
   color: var(--text);
   font-family: "DM Sans", Arial, sans-serif;
   line-height: 1.7;
@@ -41,7 +41,9 @@
 }
 
 .portfolio-brand {
-  font: 800 1.7rem "Manrope", sans-serif;
+  font:
+    800 1.7rem "Manrope",
+    sans-serif;
   letter-spacing: -0.08em;
 }
 
@@ -92,7 +94,9 @@
 
 .portfolio-copy h1 {
   margin: 22px 0;
-  font: 800 clamp(2.5rem, 5.2vw, 4.7rem)/1.12 "Manrope", sans-serif;
+  font:
+    800 clamp(2.5rem, 5.2vw, 4.7rem)/1.12 "Manrope",
+    sans-serif;
   letter-spacing: -0.065em;
 }
 
@@ -144,7 +148,9 @@
   border-radius: 5px;
   font-size: 0.88rem;
   font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .action-primary {
@@ -234,7 +240,9 @@
 
 .portfolio-intro h2 {
   margin: 14px 0;
-  font: 800 clamp(2rem, 4vw, 3.3rem)/1.2 "Manrope", sans-serif;
+  font:
+    800 clamp(2rem, 4vw, 3.3rem)/1.2 "Manrope",
+    sans-serif;
   letter-spacing: -0.05em;
 }
 
@@ -255,7 +263,9 @@
   border: 1px solid #2c2c2c;
   border-radius: 8px;
   background: linear-gradient(135deg, #151515, #0e0e0e);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .goal-card:hover {
@@ -271,7 +281,9 @@
 
 .goal-card h3 {
   margin: 14px 0 8px;
-  font: 700 1.3rem "Manrope", sans-serif;
+  font:
+    700 1.3rem "Manrope",
+    sans-serif;
 }
 
 .goal-card p {
@@ -359,7 +371,6 @@
   }
 }
 
-
 .section-heading {
   margin: 12px 0 30px;
   font-size: clamp(28px, 4vw, 42px);
@@ -386,7 +397,6 @@
   font-size: 12px;
 }
 
-
 .projects-intro {
   max-width: 520px;
   margin: -14px 0 28px;
@@ -405,7 +415,9 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.035);
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .showcase-card:hover {
@@ -466,7 +478,6 @@
   }
 }
 
-
 /* Portfolio layout polish */
 .portfolio {
   overflow-wrap: anywhere;
@@ -485,7 +496,9 @@
 }
 
 .portfolio-nav a {
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .portfolio-nav a:hover {
@@ -564,7 +577,6 @@
   }
 }
 
-
 .typing-role {
   display: inline-flex;
   align-items: center;
@@ -582,7 +594,6 @@
     opacity: 0;
   }
 }
-
 
 /* ===== FINAL HOME PAGE POLISH ===== */
 
@@ -675,7 +686,9 @@ html {
   align-self: flex-start;
   padding: 5px 0;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .showcase-link:hover,
@@ -685,7 +698,9 @@ html {
 }
 
 .github-profile-link .action-secondary {
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .github-profile-link .action-secondary:hover {
@@ -762,7 +777,6 @@ html {
   }
 }
 
-
 .intro-page-links {
   display: flex;
   flex-direction: column;
@@ -811,7 +825,6 @@ html {
   outline-offset: 5px;
 }
 
-
 /* =========================================
    REACT CONTACT PAGE
 ========================================= */
@@ -832,7 +845,9 @@ html {
 
 .contact-heading h1 {
   margin: 12px 0 18px;
-  font: 800 clamp(2.8rem, 6vw, 4.8rem)/1.12 "Manrope", sans-serif;
+  font:
+    800 clamp(2.8rem, 6vw, 4.8rem)/1.12 "Manrope",
+    sans-serif;
   letter-spacing: -0.065em;
 }
 
@@ -869,7 +884,9 @@ html {
 
 .contact-note h2 {
   margin: 14px 0;
-  font: 700 clamp(1.8rem, 4vw, 2.8rem)/1.2 "Manrope", sans-serif;
+  font:
+    700 clamp(1.8rem, 4vw, 2.8rem)/1.2 "Manrope",
+    sans-serif;
   letter-spacing: -0.045em;
 }
 
@@ -901,7 +918,9 @@ html {
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .contact-copy-button {
