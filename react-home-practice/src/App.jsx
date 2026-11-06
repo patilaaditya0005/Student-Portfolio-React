@@ -7,6 +7,8 @@ import Skills from "./skills";
 import Projects from "./projects";
 import Contact from "./contact";
 
+/* improving the content of this  */ 
+
 const roles = [
   "Computer Science Student",
   "Aspiring Software Developer",
