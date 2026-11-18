@@ -1,0 +1,168 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#080808" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Contact Aaditya Patil about internships, projects, and collaboration opportunities." />
+    <title>Contact | Aaditya Patil</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="page-container">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          AP
+          <span>.</span>
+        </a>
+
+        <nav aria-label="Main navigation" class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="education.html">Education</a>
+          <a href="skills.html">Skills</a>
+          <a href="projects.html">Projects</a>
+          <a class="active" href="contact.html" aria-current="page">Contact</a>
+        </nav>
+      </header>
+
+      <main id="main-content" class="content-page">
+        <section class="page-heading contact-reveal">
+          <p class="eyebrow">HAVE AN IDEA?</p>
+          <h1>
+            Let&rsquo;s
+            <span>Connect</span>
+          </h1>
+          <p>
+            Interested in a project, internship, or collaboration? Send me a
+            message.
+          </p>
+        </section>
+
+        <section class="contact-layout">
+          <div class="panel contact-note contact-reveal">
+            <p class="eyebrow">GET IN TOUCH</p>
+            <h2>Good things start with a conversation.</h2>
+            <p class="muted">
+              I&rsquo;m interested in learning opportunities, project
+              collaborations, and connecting with people who enjoy building
+              things.
+            </p>
+
+            <a
+              class="contact-email"
+              href="mailto:patilaaditya0005@gmail.com"
+              id="contactEmail"
+            >
+              patilaaditya0005@gmail.com &nearrow;
+            </a>
+
+            <button
+              class="button button-light contact-copy-button"
+              id="copyEmailBtn"
+              type="button"
+            >
+              Copy email
+            </button>
+
+            <p
+              class="form-note"
+              id="copyEmailStatus"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <form
+            action="mailto:patilaaditya0005@gmail.com"
+            class="panel contact-form contact-reveal"
+            enctype="text/plain"
+            id="contactForm"
+            method="post"
+          >
+            <label for="name">Full name</label>
+            <input
+              id="name"
+              name="Name"
+              placeholder="Your name"
+              type="text"
+              autocomplete="name"
+              minlength="2"
+              maxlength="80"
+              required
+            />
+
+            <p class="field-error" id="nameError"></p>
+
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="Email"
+              placeholder="you@example.com"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+            />
+
+            <p class="field-error" id="emailError"></p>
+
+            <label for="reason">Reason for contact</label>
+            <select id="reason" name="Reason">
+              <option value="Internship">Internship</option>
+              <option value="Project collaboration">
+                Project collaboration
+              </option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label for="message">Your message</label>
+            <textarea
+              id="message"
+              name="Message"
+              placeholder="Tell me a little about it..."
+              minlength="10"
+              maxlength="1000"
+              rows="5"
+              required
+            ></textarea>
+
+            <div class="contact-message-meta">
+              <p class="field-error" id="messageError"></p>
+              <p class="form-note" id="messageCounter">0 / 1000 characters</p>
+            </div>
+
+            <button class="button button-light" id="sendMessageBtn" type="submit">
+              Send message
+              <span>&nearrow;</span>
+            </button>
+
+            <p
+              class="form-note"
+              id="formStatus"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+            <p class="form-note">
+              This opens your default email app. Direct website form
+              submissions require a backend or form service.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>&copy; 2026 Aaditya Patil</span>
+        <a href="index.html">Back to home &uarr;</a>
+      </footer>
+    </div>
+
+    <button id="backtotop" type="button" aria-label="Back to top">
+      Back to top &uarr;
+    </button>
+  </body>
+</html>

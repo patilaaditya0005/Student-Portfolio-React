@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -22,3 +23,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+# Dependencies and build output
+react-home-practice/node_modules/
+react-home-practice/dist/
+react-home-practice/dist-ssr/
+
+# Local logs and environment files
+*.log
+*.local
+.env
+.env.*
+
+# Local Git metadata backup
+react-git-backup/
+>>>>>>> c1eee9a86e347e4d2f825ed146ea38487a74a486
