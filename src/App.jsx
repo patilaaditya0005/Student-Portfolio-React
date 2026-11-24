@@ -1,13 +1,12 @@
-// Completing the project by tomorrow or day after tomorrow 
+
 import { useEffect, useState } from "react";
 import "./App.css";
+
 import About from "./about";
 import Education from "./education";
 import Skills from "./skills";
 import Projects from "./projects";
 import Contact from "./contact";
-
-/* improving the content of this  */ 
 
 const roles = [
   "Computer Science Student",
@@ -15,14 +14,16 @@ const roles = [
   "AI Enthusiast",
 ];
 
+const GITHUB_USERNAME = "patilaaditya0005";
+
 const soilProject = {
   id: "soil-advisory-system",
   name: "Soil Advisory System",
   description:
     "Explore my Soil Advisory System project, its implementation, and source code on GitHub.",
-  html_url: "https://github.com/patilaaditya0005/soil-advisory-system",
+  html_url: `https://github.com/${GITHUB_USERNAME}/soil-advisory-system`,
   language: null,
-  stargazers_count: null,
+  stargazers_count: 0,
   featured: true,
 };
 
@@ -32,7 +33,9 @@ function useTypingEffect(words) {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const word = words[wordIndex];
+    if (!words.length) return undefined;
+
+    const word = words[wordIndex] || "";
     const finishedTyping = text === word;
     const finishedDeleting = text === "";
 
@@ -44,7 +47,7 @@ function useTypingEffect(words) {
           ? 45
           : 85;
 
-    const timer = setTimeout(() => {
+    const timer = window.setTimeout(() => {
       if (!deleting && finishedTyping) {
         setDeleting(true);
       } else if (deleting && finishedDeleting) {
@@ -57,7 +60,7 @@ function useTypingEffect(words) {
       }
     }, delay);
 
-    return () => clearTimeout(timer);
+    return () => window.clearTimeout(timer);
   }, [words, wordIndex, text, deleting]);
 
   return text;
@@ -69,16 +72,17 @@ function GitHubProjects() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
 
     async function loadProjects() {
       try {
         const response = await fetch(
-          "https://api.github.com/users/patilaaditya0005/repos?sort=updated&per_page=100"
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+          { signal: controller.signal }
         );
 
         if (!response.ok) {
-          throw new Error("GitHub request failed");
+          throw new Error(`GitHub request failed: ${response.status}`);
         }
 
         const data = await response.json();
@@ -87,44 +91,46 @@ function GitHubProjects() {
           throw new Error("Unexpected GitHub response");
         }
 
-        const otherProjects = data
-          .filter(
-            (repo) =>
-              !repo.fork &&
-              repo.name.toLowerCase() !== "soil-advisory-system"
-          )
-          .map((repo) => ({
-            ...repo,
-            featured: false,
-          }));
-
         const featuredRepo = data.find(
-          (repo) => repo.name.toLowerCase() === "soil-advisory-system"
+          (repo) =>
+            repo.name?.toLowerCase() === "soil-advisory-system"
         );
 
         const featuredProject = {
           ...soilProject,
           ...(featuredRepo
             ? {
-                html_url: featuredRepo.html_url,
+                id: featuredRepo.id || soilProject.id,
+                html_url: featuredRepo.html_url || soilProject.html_url,
                 description:
                   featuredRepo.description || soilProject.description,
-                language: featuredRepo.language,
-                stargazers_count: featuredRepo.stargazers_count,
+                language: featuredRepo.language || null,
+                stargazers_count:
+                  featuredRepo.stargazers_count ?? 0,
               }
             : {}),
         };
 
-        if (!cancelled) {
-          setProjects([featuredProject, ...otherProjects]);
-        }
-      } catch {
-        if (!cancelled) {
+        const otherProjects = data
+          .filter(
+            (repo) =>
+              !repo.fork &&
+              repo.name?.toLowerCase() !== "soil-advisory-system"
+          )
+          .map((repo) => ({
+            ...repo,
+            featured: false,
+          }));
+
+        setProjects([featuredProject, ...otherProjects]);
+        setError(false);
+      } catch (err) {
+        if (err.name !== "AbortError") {
           setProjects([soilProject]);
           setError(true);
         }
       } finally {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setLoading(false);
         }
       }
@@ -132,21 +138,19 @@ function GitHubProjects() {
 
     loadProjects();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => controller.abort();
   }, []);
 
   return (
     <>
       {loading && (
-        <p className="projects-message">
+        <p className="projects-message" role="status">
           Loading GitHub projects...
         </p>
       )}
 
       {error && (
-        <p className="projects-message">
+        <p className="projects-message" role="status">
           GitHub repositories could not load. Showing the featured project
           instead.
         </p>
@@ -154,21 +158,24 @@ function GitHubProjects() {
 
       <div className="project-showcase-grid">
         {projects.map((project, index) => (
-          <article className="showcase-card" key={project.id}>
+          <article
+            className="showcase-card"
+            key={project.id || project.name}
+          >
             <div className="showcase-number">
               {project.featured
                 ? "FEATURED PROJECT / 01"
                 : `GITHUB PROJECT / ${String(index + 1).padStart(2, "0")}`}
             </div>
 
-            <div className="showcase-icon">
+            <div className="showcase-icon" aria-hidden="true">
               {project.featured ? "🌱" : "</>"}
             </div>
 
             <h3>
               {project.featured
                 ? "Soil Advisory System"
-                : project.name.replaceAll("-", " ")}
+                : (project.name || "Untitled Project").replaceAll("-", " ")}
             </h3>
 
             <p>
@@ -184,14 +191,17 @@ function GitHubProjects() {
               )}
             </div>
 
-            <a
-              className="showcase-link"
-              href={project.html_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              View on GitHub ↗
-            </a>
+            {project.html_url && (
+              <a
+                className="showcase-link"
+                href={project.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.name || "project"} on GitHub`}
+              >
+                View on GitHub ↗
+              </a>
+            )}
           </article>
         ))}
       </div>
@@ -220,12 +230,12 @@ export default function App() {
   return (
     <div className="portfolio">
       <header className="portfolio-header">
-        <a className="portfolio-brand" href="/">
+        <a className="portfolio-brand" href="/" aria-label="Aaditya Patil home">
           AP<span>.</span>
         </a>
 
         <nav className="portfolio-nav" aria-label="Main navigation">
-          <a className="active" href="/">Home</a>
+          <a className="active" href="/" aria-current="page">Home</a>
           <a href="/about">About</a>
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
@@ -252,7 +262,7 @@ export default function App() {
 
             <p className="role-button typing-role" aria-live="polite">
               {animatedRole}
-              <span className="typing-cursor">|</span>
+              <span className="typing-cursor" aria-hidden="true">|</span>
             </p>
 
             <p className="portfolio-description">
@@ -272,7 +282,8 @@ export default function App() {
             </div>
 
             <p className="portfolio-status">
-              <span /> Currently learning · Open to opportunities
+              <span aria-hidden="true" />
+              Currently learning · Open to opportunities
             </p>
           </div>
 
@@ -281,6 +292,7 @@ export default function App() {
               <img
                 src="/assets/portrait-cinematic.jpeg"
                 alt="Portrait of Aaditya Patil"
+                loading="eager"
               />
             </div>
 
@@ -314,7 +326,7 @@ export default function App() {
             </a>
 
             <a className="showcase-link" href="/skills">
-              Have a look on my Skills ↗
+              Have a look at my skills ↗
             </a>
           </div>
         </section>
@@ -391,9 +403,9 @@ export default function App() {
           <div className="github-profile-link">
             <a
               className="action-secondary"
-              href="https://github.com/patilaaditya0005"
+              href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               View GitHub profile ↗
             </a>
@@ -402,12 +414,9 @@ export default function App() {
       </main>
 
       <footer className="portfolio-footer" id="contact">
-        <span>© 2026 Aaditya Patil</span>
+        <span>© {new Date().getFullYear()} Aaditya Patil</span>
         <a href="/contact">Get in touch ↗</a>
       </footer>
     </div>
   );
 }
-
-
-/*adding more feature in the protfolio website*/

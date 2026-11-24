@@ -118,6 +118,39 @@
   right: 0;
 }
 
+/* Consistent back button across all pages */
+.page-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid #454545;
+  border-radius: 6px;
+  background: #151515;
+  color: #f5f5f5;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.page-back-button:hover {
+  background: #252525;
+  border-color: #999999;
+  transform: translateX(-3px);
+}
+
+.page-back-button:focus-visible {
+  outline: 2px solid #f2f2f2;
+  outline-offset: 4px;
+}
+
 .education-page a:focus-visible,
 .education-page button:focus-visible {
   outline: 2px solid #ffffff;

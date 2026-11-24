@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "./about.css";
 
@@ -56,6 +57,30 @@ const focusAreas = [
   },
 ];
 
+const emailAddress = "patilaaditya0005@gmail.com";
+
+function PageBackButton() {
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  };
+
+  return (
+    <button
+      className="page-back-button"
+      type="button"
+      onClick={handleBack}
+      aria-label="Go back to the previous page"
+    >
+      <span aria-hidden="true">←</span>
+      Back
+    </button>
+  );
+}
+
 export default function About() {
   const [readMore, setReadMore] = useState(false);
   const [showJourney, setShowJourney] = useState(false);
@@ -63,22 +88,26 @@ export default function About() {
   return (
     <div className="about-page">
       <header className="about-header">
-        <a className="about-brand" href="/">
+        <a className="about-brand" href="/" aria-label="Aaditya Patil home">
           AP<span>.</span>
         </a>
 
         <nav className="about-nav" aria-label="Main navigation">
-  <a href="/">Home</a>
-  <a className="active" href="/about" aria-current="page">About</a>
-  <a href="/education">Education</a>
-  <a href="/skills">Skills</a>
-  <a href="/#work">My Goals</a>
-  <a href="/#projects">Projects</a>
-  <a href="/#contact">Contact</a>
-</nav>
+          <a href="/">Home</a>
+          <a className="active" href="/about" aria-current="page">
+            About
+          </a>
+          <a href="/education">Education</a>
+          <a href="/skills">Skills</a>
+          <a href="/#work">My Goals</a>
+          <a href="/projects">Projects</a>
+          <a href="/contact">Contact</a>
+        </nav>
       </header>
 
       <main className="about-main" id="main-content">
+        <PageBackButton />
+
         <section className="about-heading">
           <p className="about-eyebrow">GET TO KNOW ME</p>
 
@@ -97,7 +126,9 @@ export default function About() {
             <img
               src="/assets/portrait-professional.png"
               alt="Portrait of Aaditya Patil"
+              loading="lazy"
             />
+
             <span className="about-image-label">
               LEARN. BUILD. IMPROVE.
             </span>
@@ -142,6 +173,7 @@ export default function About() {
               type="button"
               onClick={() => setReadMore((value) => !value)}
               aria-expanded={readMore}
+              aria-controls="about-extra-content"
             >
               {readMore ? "Read Less ↑" : "Read More ↓"}
             </button>
@@ -318,14 +350,14 @@ export default function About() {
           <div className="about-bottom-actions">
             <a
               className="about-button about-button-light"
-              href="/#projects"
+              href="/projects"
             >
               Explore my projects ↗
             </a>
 
             <a
               className="about-text-link"
-              href="mailto:patilaaditya0005@gmail.com"
+              href={`mailto:${emailAddress}`}
             >
               Let's connect →
             </a>
@@ -338,15 +370,16 @@ export default function About() {
           onClick={() =>
             window.scrollTo({ top: 0, behavior: "smooth" })
           }
+          aria-label="Scroll to top"
         >
           ↑ Top
         </button>
       </main>
 
       <footer className="about-footer">
-        <span>© 2026 Aaditya Patil</span>
+        <span>© {new Date().getFullYear()} Aaditya Patil</span>
 
-        <a href="mailto:patilaaditya0005@gmail.com">
+        <a href={`mailto:${emailAddress}`}>
           Get in touch ↗
         </a>
 
