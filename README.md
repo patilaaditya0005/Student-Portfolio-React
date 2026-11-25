@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-=======
 # 🌐 Student Portfolio Website
 
 A modern, responsive personal portfolio website built with **HTML, CSS, and JavaScript** to showcase my profile, technical skills, education, projects, and contact information.
@@ -110,4 +92,3 @@ The repository includes `demo.mp4`, which contains a demonstration of the portfo
 ⭐ If you find this project interesting, consider giving the repository a star!
 
 *Built with HTML, CSS, JavaScript, and a passion for learning and building for the web.*
->>>>>>> c1eee9a86e347e4d2f825ed146ea38487a74a486

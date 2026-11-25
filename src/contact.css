@@ -5,13 +5,41 @@
 
 .contact-page {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .contact-content {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 88px 0 110px;
+  padding: 88px 0 90px;
 }
+
+/* =========================================
+   SKIP LINK
+========================================= */
+
+.contact-page .skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 12px 18px;
+  border-radius: 6px;
+  background: var(--accent, #a6e3a1);
+  color: #101510;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 180ms ease;
+}
+
+.contact-page .skip-link:focus {
+  transform: translateY(0);
+}
+
+/* =========================================
+   PAGE HEADING
+========================================= */
 
 .contact-heading {
   max-width: 720px;
@@ -24,6 +52,7 @@
   font-size: clamp(3rem, 7vw, 5.8rem);
   line-height: 1;
   letter-spacing: -0.065em;
+  overflow-wrap: anywhere;
 }
 
 .contact-heading h1 span {
@@ -43,7 +72,7 @@
 
 .contact-layout {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: 56px;
   align-items: start;
 }
@@ -58,7 +87,7 @@
 }
 
 /* =========================================
-   LEFT CONTACT INFO
+   LEFT CONTACT INFORMATION
 ========================================= */
 
 .contact-note h2 {
@@ -66,6 +95,7 @@
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.15;
   letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
 }
 
 .contact-note > p:not(.portfolio-eyebrow):not(.contact-form-note) {
@@ -75,15 +105,19 @@
 
 .contact-email {
   display: inline-block;
+  max-width: 100%;
   margin: 22px 0 14px;
   color: var(--accent, #a6e3a1);
   font-weight: 600;
   text-decoration: none;
   overflow-wrap: anywhere;
+  transition: opacity 180ms ease;
 }
 
 .contact-email:hover {
+  opacity: 0.8;
   text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* =========================================
@@ -106,15 +140,22 @@
   font-weight: 600;
   cursor: pointer;
   transition:
-    transform .2s ease,
-    background .2s ease,
-    border-color .2s ease;
+    transform 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease;
 }
 
 .contact-copy-button:hover,
 .contact-submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
   border-color: var(--accent, #a6e3a1);
+}
+
+.contact-copy-button:active,
+.contact-submit-button:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .contact-submit-button {
@@ -130,13 +171,22 @@
 }
 
 .contact-submit-button:disabled {
-  opacity: .65;
+  opacity: 0.65;
   cursor: wait;
   transform: none;
 }
 
+/* BUTTON FOCUS */
+
+.contact-copy-button:focus-visible,
+.contact-submit-button:focus-visible,
+.contact-home-action a:focus-visible {
+  outline: 2px solid var(--accent, #a6e3a1);
+  outline-offset: 4px;
+}
+
 /* =========================================
-   FORM
+   CONTACT FORM
 ========================================= */
 
 .contact-form {
@@ -147,7 +197,7 @@
 
 .contact-form label {
   margin-top: 8px;
-  font-size: .92rem;
+  font-size: 0.92rem;
   font-weight: 600;
 }
 
@@ -164,7 +214,20 @@
   background: rgba(0,0,0,.16);
   font: inherit;
   box-sizing: border-box;
-  transition: border-color .2s ease, box-shadow .2s ease;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--muted, #a1a1aa);
+  opacity: 0.8;
+}
+
+.contact-form select {
+  cursor: pointer;
 }
 
 .contact-form select option {
@@ -178,27 +241,37 @@
   line-height: 1.6;
 }
 
+/* INPUT FOCUS */
+
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
   border-color: var(--accent, #a6e3a1);
+  background: rgba(0,0,0,.22);
   box-shadow: 0 0 0 3px rgba(166,227,161,.12);
 }
+
+/* INVALID INPUT */
 
 .contact-form input[aria-invalid="true"],
 .contact-form textarea[aria-invalid="true"] {
   border-color: #ef7777;
 }
 
+.contact-form input[aria-invalid="true"]:focus,
+.contact-form textarea[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(239,119,119,.12);
+}
+
 /* =========================================
-   VALIDATION
+   VALIDATION ERRORS
 ========================================= */
 
 .contact-error {
   display: block;
   margin-top: -5px;
   color: #ff8585;
-  font-size: .82rem;
+  font-size: 0.82rem;
   line-height: 1.5;
 }
 
@@ -210,7 +283,7 @@
   display: flex;
   justify-content: flex-end;
   color: var(--muted, #a1a1aa);
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 /* =========================================
@@ -221,12 +294,66 @@
   min-height: 1em;
   margin: 2px 0 0;
   color: var(--muted, #a1a1aa);
-  font-size: .82rem;
+  font-size: 0.82rem;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 /* =========================================
-   RESPONSIVE
+   BACK HOME ACTION
+========================================= */
+
+.contact-home-action {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 45px;
+}
+
+.contact-home-action .page-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #454545;
+  border-radius: 6px;
+  background: #151515;
+  color: #f5f5f5;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.contact-home-action .page-back-button:hover {
+  background: #252525;
+  border-color: #999;
+  transform: translateX(-3px);
+}
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .contact-layout {
+    gap: 28px;
+  }
+
+  .contact-note,
+  .contact-form {
+    padding: 26px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - MOBILE
 ========================================= */
 
 @media (max-width: 760px) {
@@ -240,7 +367,7 @@
   }
 
   .contact-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 22px;
   }
 
@@ -248,19 +375,80 @@
   .contact-form {
     padding: 24px;
   }
+
+  .contact-home-action {
+    margin-top: 35px;
+  }
 }
 
+/* =========================================
+   RESPONSIVE - SMALL MOBILE
+========================================= */
+
 @media (max-width: 480px) {
+  .contact-content {
+    width: calc(100% - 28px);
+    padding-top: 48px;
+    padding-bottom: 60px;
+  }
+
+  .contact-heading {
+    margin-bottom: 30px;
+  }
+
   .contact-heading h1 {
-    font-size: 3rem;
+    font-size: clamp(2.6rem, 11vw, 3rem);
+    letter-spacing: -0.055em;
+  }
+
+  .contact-heading > p:last-child {
+    font-size: 0.9rem;
   }
 
   .contact-note,
   .contact-form {
     padding: 20px;
+    border-radius: 16px;
+  }
+
+  .contact-note h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-size: 0.9rem;
   }
 
   .contact-submit-button {
+    width: 100%;
+  }
+
+  .contact-home-action {
+    margin-top: 28px;
+  }
+}
+
+/* =========================================
+   VERY SMALL SCREENS
+========================================= */
+
+@media (max-width: 340px) {
+  .contact-content {
+    width: calc(100% - 22px);
+  }
+
+  .contact-note,
+  .contact-form {
+    padding: 16px;
+  }
+
+  .contact-heading h1 {
+    font-size: 2.5rem;
+  }
+
+  .contact-copy-button {
     width: 100%;
   }
 }
@@ -270,11 +458,18 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-copy-button,
-  .contact-submit-button,
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
-    transition: none;
+  .contact-page *,
+  .contact-page *::before,
+  .contact-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .contact-copy-button:hover,
+  .contact-submit-button:hover:not(:disabled),
+  .contact-home-action .page-back-button:hover {
+    transform: none;
   }
 }

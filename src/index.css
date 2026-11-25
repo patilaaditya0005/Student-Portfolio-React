@@ -1,16 +1,18 @@
+
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
   font-family: "DM Sans", sans-serif;
   color: #f5f5f5;
   background: #090a0c;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
-  scroll-behavior: smooth;
+
   --bg: #090a0c;
   --surface: #111317;
   --surface-light: #171a20;
@@ -20,7 +22,9 @@
   --border: rgba(255, 255, 255, 0.1);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -34,16 +38,30 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+
+  color: var(--text);
   background:
-    radial-gradient(ellipse at 85% 0%, rgba(196, 243, 107, 0.055), transparent 32%),
+    radial-gradient(
+      ellipse at 85% 0%,
+      rgba(196, 243, 107, 0.055),
+      transparent 32%
+    ),
     var(--bg);
 }
 
 body,
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: "DM Sans", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font-size: inherit;
 }
 
 button,
@@ -58,19 +76,51 @@ a {
 
 button {
   color: inherit;
+  cursor: pointer;
 }
 
-img {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
+img {
+  height: auto;
+}
+
 button,
-a {
+a,
+input,
+textarea,
+select {
   outline-offset: 5px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 ::selection {
   color: #090a0c;
   background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,5 +1,5 @@
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./projects.css";
 
 const projects = [
@@ -30,8 +30,7 @@ const projects = [
       },
     ],
     video: "/demo.mp4",
-    github:
-      "https://github.com/patilaaditya0005/soil-advisory-system",
+    github: "https://github.com/patilaaditya0005/soil-advisory-system",
     featured: true,
   },
   {
@@ -61,12 +60,25 @@ const filters = [
   { label: "Web Development", value: "web-development" },
 ];
 
+const getCategoryLabel = (category) => {
+  const categoryLabels = {
+    "machine-learning": "Machine Learning",
+    "web-development": "Web Development",
+  };
+
+  return categoryLabels[category] || "Other";
+};
+
 export default function Projects() {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
   const [expandedProjects, setExpandedProjects] = useState([]);
   const [previewImage, setPreviewImage] = useState(null);
 
+  const previewTriggerRef = useRef(null);
+  const lightboxCloseRef = useRef(null);
+
+  // FILTER AND SEARCH PROJECTS
   const filteredProjects = useMemo(() => {
     const query = search.trim().toLowerCase();
 
@@ -76,6 +88,8 @@ export default function Projects() {
 
       const searchableContent = [
         project.title,
+        project.category,
+        getCategoryLabel(project.category),
         project.description,
         ...project.technologies,
         ...project.features,
@@ -89,12 +103,14 @@ export default function Projects() {
     });
   }, [search, activeFilter]);
 
+  // CHECK WHETHER ALL VISIBLE PROJECTS ARE EXPANDED
   const allExpanded =
     filteredProjects.length > 0 &&
     filteredProjects.every((project) =>
       expandedProjects.includes(project.id)
     );
 
+  // TOGGLE INDIVIDUAL PROJECT
   const toggleProject = (id) => {
     setExpandedProjects((current) =>
       current.includes(id)
@@ -103,17 +119,81 @@ export default function Projects() {
     );
   };
 
+  // EXPAND OR COLLAPSE FILTERED PROJECTS
   const toggleAllProjects = () => {
+    const visibleProjectIds = filteredProjects.map(
+      (project) => project.id
+    );
+
     if (allExpanded) {
-      setExpandedProjects([]);
+      setExpandedProjects((current) =>
+        current.filter((id) => !visibleProjectIds.includes(id))
+      );
     } else {
-      setExpandedProjects(filteredProjects.map((project) => project.id));
+      setExpandedProjects((current) => [
+        ...new Set([...current, ...visibleProjectIds]),
+      ]);
     }
   };
 
+  // CHANGE PROJECT FILTER
   const handleFilter = (filter) => {
     setActiveFilter(filter);
     setExpandedProjects([]);
+  };
+
+  // RESET SEARCH AND FILTERS
+  const clearFilters = () => {
+    setSearch("");
+    setActiveFilter("all");
+    setExpandedProjects([]);
+  };
+
+  // OPEN IMAGE PREVIEW
+  const openImagePreview = (image, event) => {
+    previewTriggerRef.current = event.currentTarget;
+    setPreviewImage(image);
+  };
+
+  // CLOSE IMAGE PREVIEW
+  const closeImagePreview = () => {
+    setPreviewImage(null);
+  };
+
+  // IMAGE LIGHTBOX KEYBOARD ACCESSIBILITY
+  useEffect(() => {
+    if (!previewImage) return undefined;
+
+    const closeButton = lightboxCloseRef.current;
+
+    closeButton?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeImagePreview();
+      }
+
+      // Keep keyboard focus inside the lightbox.
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closeButton?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previewTriggerRef.current?.focus();
+    };
+  }, [previewImage]);
+
+  // SCROLL TO PAGE TOP
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -122,8 +202,9 @@ export default function Projects() {
         Skip to main content
       </a>
 
+      {/* HEADER */}
       <header className="site-header">
-        <a className="brand" href="/">
+        <a className="brand" href="/" aria-label="Aaditya Patil - Home">
           AP<span>.</span>
         </a>
 
@@ -139,6 +220,7 @@ export default function Projects() {
         </nav>
       </header>
 
+      {/* MAIN CONTENT */}
       <main id="main-content" className="content-page">
         {/* PAGE INTRO */}
         <section className="page-heading">
@@ -175,7 +257,11 @@ export default function Projects() {
             onChange={(event) => setSearch(event.target.value)}
           />
 
-          <div className="project-filters" aria-label="Filter projects">
+          <div
+            className="project-filters"
+            role="group"
+            aria-label="Filter projects by category"
+          >
             {filters.map((filter) => (
               <button
                 key={filter.value}
@@ -192,7 +278,7 @@ export default function Projects() {
           </div>
 
           <div className="project-explorer-actions">
-            <p className="muted" aria-live="polite">
+            <p className="muted" aria-live="polite" aria-atomic="true">
               Showing {filteredProjects.length}{" "}
               {filteredProjects.length === 1 ? "project" : "projects"}
             </p>
@@ -224,10 +310,16 @@ export default function Projects() {
                   type="button"
                   className="project-summary"
                   aria-expanded={isExpanded}
-                  aria-controls={`project-details-${project.id}`}
+                  aria-controls={
+                    isExpanded
+                      ? `project-details-${project.id}`
+                      : undefined
+                  }
                   onClick={() => toggleProject(project.id)}
                 >
-                  <span className="project-number">{project.number}</span>
+                  <span className="project-number">
+                    {project.number}
+                  </span>
 
                   <span className="project-summary-main">
                     <span className="project-title">
@@ -235,9 +327,7 @@ export default function Projects() {
                     </span>
 
                     <span className="project-card-category">
-                      {project.category === "machine-learning"
-                        ? "Machine Learning"
-                        : "Web Development"}
+                      {getCategoryLabel(project.category)}
                     </span>
                   </span>
 
@@ -261,6 +351,7 @@ export default function Projects() {
                       {project.description}
                     </p>
 
+                    {/* TECHNOLOGIES */}
                     <h3>Technologies used</h3>
 
                     <div className="project-tags">
@@ -269,6 +360,7 @@ export default function Projects() {
                       ))}
                     </div>
 
+                    {/* KEY FEATURES */}
                     <h3>Key features</h3>
 
                     <ul className="project-feature-list">
@@ -277,6 +369,7 @@ export default function Projects() {
                       ))}
                     </ul>
 
+                    {/* PROJECT SCREENSHOTS */}
                     {project.images.length > 0 && (
                       <>
                         <h3>Project screenshots</h3>
@@ -287,7 +380,9 @@ export default function Projects() {
                               type="button"
                               className="project-image-button"
                               key={image.src}
-                              onClick={() => setPreviewImage(image)}
+                              onClick={(event) =>
+                                openImagePreview(image, event)
+                              }
                               aria-label={`Preview ${image.caption}`}
                             >
                               <img
@@ -309,6 +404,7 @@ export default function Projects() {
                       </>
                     )}
 
+                    {/* PROJECT DEMO VIDEO */}
                     {project.video && (
                       <>
                         <h3>Project demo</h3>
@@ -323,18 +419,23 @@ export default function Projects() {
                           playsInline
                           preload="metadata"
                         >
-                          <source src={project.video} type="video/mp4" />
+                          <source
+                            src={project.video}
+                            type="video/mp4"
+                          />
                           Your browser does not support video playback.
                         </video>
                       </>
                     )}
 
+                    {/* PROJECT LINKS */}
                     <div className="project-details-actions">
                       <a
                         className="project-github-link"
                         href={project.github}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
                       >
                         View on GitHub ↗
                       </a>
@@ -348,8 +449,9 @@ export default function Projects() {
 
         {/* EMPTY SEARCH RESULT */}
         {filteredProjects.length === 0 && (
-          <div className="panel no-projects">
+          <div className="panel no-projects" role="status">
             <h3>No matching projects found.</h3>
+
             <p className="muted">
               Try another search term or select All Projects.
             </p>
@@ -357,10 +459,7 @@ export default function Projects() {
             <button
               type="button"
               className="project-action-button"
-              onClick={() => {
-                setSearch("");
-                setActiveFilter("all");
-              }}
+              onClick={clearFilters}
             >
               Clear filters
             </button>
@@ -374,29 +473,31 @@ export default function Projects() {
           </a>
         </div>
 
+        {/* BACK TO TOP */}
         <button
           type="button"
           className="projects-back-to-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={scrollToTop}
           aria-label="Back to top"
         >
           ↑ Top
         </button>
       </main>
 
-      {/* IMAGE PREVIEW */}
+      {/* IMAGE PREVIEW LIGHTBOX */}
       {previewImage && (
         <div
           className="image-lightbox"
           role="dialog"
           aria-modal="true"
           aria-label="Project image preview"
-          onClick={() => setPreviewImage(null)}
+          onClick={closeImagePreview}
         >
           <button
+            ref={lightboxCloseRef}
             type="button"
             className="lightbox-close"
-            onClick={() => setPreviewImage(null)}
+            onClick={closeImagePreview}
             aria-label="Close image preview"
           >
             ×
@@ -406,12 +507,17 @@ export default function Projects() {
             className="lightbox-content"
             onClick={(event) => event.stopPropagation()}
           >
-            <img src={previewImage.src} alt={previewImage.alt} />
+            <img
+              src={previewImage.src}
+              alt={previewImage.alt}
+            />
+
             <p>{previewImage.caption}</p>
           </div>
         </div>
       )}
 
+      {/* FOOTER */}
       <footer className="site-footer">
         <span>© 2026 Aaditya Patil</span>
         <a href="/contact">Contact ↗</a>

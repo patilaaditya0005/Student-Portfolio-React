@@ -5,14 +5,15 @@ import "./contact.css";
 const EMAIL = "patilaaditya0005@gmail.com";
 const MAX_MESSAGE_LENGTH = 1000;
 
-export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    reason: "Internship",
-    message: "",
-  });
+const INITIAL_FORM = {
+  name: "",
+  email: "",
+  reason: "Internship",
+  message: "",
+};
 
+export default function Contact() {
+  const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
   const [copyStatus, setCopyStatus] = useState("");
   const [formStatus, setFormStatus] = useState("");
@@ -37,21 +38,26 @@ export default function Contact() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (form.name.trim().length < 2) {
-      newErrors.name = "Please enter your full name.";
+    const trimmedName = form.name.trim();
+    const trimmedEmail = form.email.trim();
+    const trimmedMessage = form.message.trim();
+
+    const emailPattern =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)+$/;
+
+    if (trimmedName.length < 2) {
+      newErrors.name = "Please enter at least 2 characters.";
+    } else if (trimmedName.length > 80) {
+      newErrors.name = "Name cannot exceed 80 characters.";
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(form.email.trim())) {
+    if (!emailPattern.test(trimmedEmail) || trimmedEmail.length > 254) {
       newErrors.email = "Please enter a valid email address.";
     }
 
-    if (form.message.trim().length < 10) {
+    if (trimmedMessage.length < 10) {
       newErrors.message = "Message must contain at least 10 characters.";
-    }
-
-    if (form.message.trim().length > MAX_MESSAGE_LENGTH) {
+    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
       newErrors.message = "Message cannot exceed 1000 characters.";
     }
 
@@ -60,10 +66,14 @@ export default function Contact() {
 
   const handleCopyEmail = async () => {
     try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error("Clipboard API unavailable");
+      }
+
       await navigator.clipboard.writeText(EMAIL);
       setCopyStatus("Email copied successfully!");
     } catch {
-      setCopyStatus(`Please copy manually: ${EMAIL}`);
+      setCopyStatus(`Automatic copy unavailable. Email: ${EMAIL}`);
     }
   };
 
@@ -80,36 +90,54 @@ export default function Contact() {
       return;
     }
 
-    const subject = `${form.reason} - Contact from ${form.name.trim()}`;
+    const trimmedName = form.name.trim();
+    const trimmedEmail = form.email.trim();
+    const trimmedMessage = form.message.trim();
+
+    const subject = `${form.reason} - Contact from ${trimmedName}`;
 
     const body = [
-      `Name: ${form.name.trim()}`,
-      `Email: ${form.email.trim()}`,
+      `Name: ${trimmedName}`,
+      `Email: ${trimmedEmail}`,
       `Reason: ${form.reason}`,
       "",
       "Message:",
-      form.message.trim(),
+      trimmedMessage,
     ].join("\n");
 
-    const mailtoLink = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    const mailtoLink =
+      `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
 
     setSubmitting(true);
     setFormStatus("Opening your default email application...");
 
-    window.location.href = mailtoLink;
+    try {
+      window.location.href = mailtoLink;
+    } catch {
+      setFormStatus(
+        "Unable to open your email application. Please contact me directly."
+      );
+    }
 
-    // Reset the button state if the email application does not open.
     window.setTimeout(() => {
       setSubmitting(false);
-    }, 1500);
+    }, 2000);
   };
 
   return (
     <div className="portfolio contact-page">
+      <a className="skip-link" href="#contact-main">
+        Skip to main content
+      </a>
+
+      {/* HEADER */}
       <header className="portfolio-header">
-        <a className="portfolio-brand" href="/">
+        <a
+          className="portfolio-brand"
+          href="/"
+          aria-label="Aaditya Patil - Home"
+        >
           AP<span>.</span>
         </a>
 
@@ -119,11 +147,19 @@ export default function Contact() {
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
           <a href="/projects">Projects</a>
-          <a className="active" href="/contact">Contact</a>
+          <a
+            className="active"
+            href="/contact"
+            aria-current="page"
+          >
+            Contact
+          </a>
         </nav>
       </header>
 
-      <main className="contact-content">
+      {/* MAIN CONTENT */}
+      <main id="contact-main" className="contact-content">
+        {/* PAGE HEADING */}
         <section className="contact-heading">
           <p className="portfolio-eyebrow">HAVE AN IDEA?</p>
 
@@ -137,7 +173,12 @@ export default function Contact() {
           </p>
         </section>
 
-        <section className="contact-layout">
+        {/* CONTACT LAYOUT */}
+        <section
+          className="contact-layout"
+          aria-label="Contact information and message form"
+        >
+          {/* CONTACT INFORMATION */}
           <div className="contact-note">
             <p className="portfolio-eyebrow">GET IN TOUCH</p>
 
@@ -161,16 +202,23 @@ export default function Contact() {
               Copy email
             </button>
 
-            <p className="contact-form-note" role="status" aria-live="polite">
+            <p
+              className="contact-form-note"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
               {copyStatus}
             </p>
           </div>
 
+          {/* CONTACT FORM */}
           <form
             className="contact-form"
             onSubmit={handleSubmit}
             noValidate
           >
+            {/* NAME */}
             <label htmlFor="contact-name">Full name</label>
 
             <input
@@ -184,16 +232,23 @@ export default function Contact() {
               value={form.name}
               onChange={handleChange}
               aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? "name-error" : undefined}
+              aria-describedby={
+                errors.name ? "name-error" : undefined
+              }
               required
             />
 
             {errors.name && (
-              <span className="contact-error" id="name-error">
+              <span
+                className="contact-error"
+                id="name-error"
+                role="alert"
+              >
                 {errors.name}
               </span>
             )}
 
+            {/* EMAIL */}
             <label htmlFor="contact-email">Email address</label>
 
             <input
@@ -206,17 +261,26 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? "email-error" : undefined}
+              aria-describedby={
+                errors.email ? "email-error" : undefined
+              }
               required
             />
 
             {errors.email && (
-              <span className="contact-error" id="email-error">
+              <span
+                className="contact-error"
+                id="email-error"
+                role="alert"
+              >
                 {errors.email}
               </span>
             )}
 
-            <label htmlFor="contact-reason">Reason for contact</label>
+            {/* REASON */}
+            <label htmlFor="contact-reason">
+              Reason for contact
+            </label>
 
             <select
               id="contact-reason"
@@ -231,6 +295,7 @@ export default function Contact() {
               <option value="Other">Other</option>
             </select>
 
+            {/* MESSAGE */}
             <label htmlFor="contact-message">Your message</label>
 
             <textarea
@@ -244,36 +309,50 @@ export default function Contact() {
               onChange={handleChange}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={
-                errors.message ? "message-error" : undefined
+                errors.message
+                  ? "message-error message-counter"
+                  : "message-counter"
               }
               required
             />
 
             {errors.message && (
-              <span className="contact-error" id="message-error">
+              <span
+                className="contact-error"
+                id="message-error"
+                role="alert"
+              >
                 {errors.message}
               </span>
             )}
 
-            <div className="contact-message-meta">
+            {/* CHARACTER COUNTER */}
+            <div
+              className="contact-message-meta"
+              id="message-counter"
+              aria-live="polite"
+              aria-atomic="true"
+            >
               <span>
                 {form.message.length} / {MAX_MESSAGE_LENGTH} characters
               </span>
             </div>
 
+            {/* SUBMIT */}
             <button
               className="contact-submit-button"
               type="submit"
               disabled={submitting}
             >
               {submitting ? "Opening email..." : "Send message"}
-              <span>↗</span>
+              <span aria-hidden="true">↗</span>
             </button>
 
             <p
               className="contact-form-note"
               role="status"
               aria-live="polite"
+              aria-atomic="true"
             >
               {formStatus}
             </p>
@@ -285,8 +364,16 @@ export default function Contact() {
             </p>
           </form>
         </section>
+
+        {/* BACK HOME */}
+        <div className="contact-home-action">
+          <a className="page-back-button" href="/">
+            ← Back to Home
+          </a>
+        </div>
       </main>
 
+      {/* FOOTER */}
       <footer className="portfolio-footer">
         <span>© 2026 Aaditya Patil</span>
         <a href="/">Back to home ↑</a>
