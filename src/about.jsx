@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./about.css";
 
@@ -116,8 +115,7 @@ export default function About() {
           </h1>
 
           <p>
-            A little about who I am, what I'm learning, and where I
-            want to go.
+            A little about who I am, what I'm learning, and where I want to go.
           </p>
         </section>
 
@@ -129,9 +127,7 @@ export default function About() {
               loading="lazy"
             />
 
-            <span className="about-image-label">
-              LEARN. BUILD. IMPROVE.
-            </span>
+            <span className="about-image-label">LEARN. BUILD. IMPROVE.</span>
           </div>
 
           <article className="about-panel about-biography">
@@ -139,31 +135,29 @@ export default function About() {
             <h2>Who am I?</h2>
 
             <p>
-              I am a Computer Science and Engineering student at MIT
-              ADT University. I enjoy learning programming, solving
-              problems, and building projects that turn concepts into
-              practical skills.
+              I am a Computer Science and Engineering student at MIT ADT
+              University. I enjoy learning programming, solving problems, and
+              building projects that turn concepts into practical skills.
             </p>
 
             {readMore && (
-              <div className="about-extra">
+              <div className="about-extra" id="about-extra-content">
                 <p>
-                  My learning journey is focused on Python, Data
-                  Structures and Algorithms, Artificial Intelligence,
-                  and web development. I enjoy exploring how technology
-                  works and applying what I learn to real projects.
+                  My learning journey is focused on Python, Data Structures and
+                  Algorithms, Artificial Intelligence, and web development. I
+                  enjoy exploring how technology works and applying what I learn
+                  to real projects.
                 </p>
 
                 <p>
-                  I am also working on my React development skills by
-                  improving my portfolio and making it more interactive,
-                  responsive, and maintainable.
+                  I am also working on my React development skills by improving
+                  my portfolio and making it more interactive, responsive, and
+                  maintainable.
                 </p>
 
                 <p>
-                  I believe consistent practice, curiosity, and learning
-                  from mistakes are important parts of becoming a better
-                  developer.
+                  I believe consistent practice, curiosity, and learning from
+                  mistakes are important parts of becoming a better developer.
                 </p>
               </div>
             )}
@@ -183,10 +177,10 @@ export default function About() {
               <h2>My goal</h2>
 
               <p>
-                To keep improving my technical skills, create useful
-                projects, strengthen my problem-solving ability, and
-                prepare for internship opportunities through consistent
-                practice and hands-on learning.
+                To keep improving my technical skills, create useful projects,
+                strengthen my problem-solving ability, and prepare for
+                internship opportunities through consistent practice and
+                hands-on learning.
               </p>
             </div>
 
@@ -204,16 +198,14 @@ export default function About() {
           <h2>Skills I'm developing.</h2>
 
           <p>
-            These are the areas I'm actively exploring and improving
-            through learning, practice, and project work.
+            These are the areas I'm actively exploring and improving through
+            learning, practice, and project work.
           </p>
 
           <div className="about-learning-grid">
             {focusAreas.map((area) => (
               <article className="about-step" key={area.number}>
-                <span className="about-step-number">
-                  {area.number}
-                </span>
+                <span className="about-step-number">{area.number}</span>
 
                 <h3>{area.title}</h3>
                 <p>{area.description}</p>
@@ -236,24 +228,20 @@ export default function About() {
           </h2>
 
           <p>
-            I try to turn what I learn into practical experience rather
-            than stopping at theory.
+            I try to turn what I learn into practical experience rather than
+            stopping at theory.
           </p>
 
           <div className="about-learning-grid">
             {learningSteps.map((step) => (
               <article className="about-step" key={step.number}>
-                <span className="about-step-number">
-                  {step.number}
-                </span>
+                <span className="about-step-number">{step.number}</span>
 
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
 
                 {showJourney && (
-                  <p className="about-step-detail">
-                    {step.detail}
-                  </p>
+                  <p className="about-step-detail">{step.detail}</p>
                 )}
               </article>
             ))}
@@ -278,8 +266,8 @@ export default function About() {
               <span className="about-step-number">01</span>
               <h3>Curiosity</h3>
               <p>
-                Exploring new ideas, understanding how things work,
-                and asking questions.
+                Exploring new ideas, understanding how things work, and asking
+                questions.
               </p>
             </article>
 
@@ -287,8 +275,8 @@ export default function About() {
               <span className="about-step-number">02</span>
               <h3>Consistency</h3>
               <p>
-                Making steady progress through regular coding practice
-                and continuous learning.
+                Making steady progress through regular coding practice and
+                continuous learning.
               </p>
             </article>
 
@@ -296,8 +284,8 @@ export default function About() {
               <span className="about-step-number">03</span>
               <h3>Practical work</h3>
               <p>
-                Building projects that help me apply concepts and
-                develop real-world skills.
+                Building projects that help me apply concepts and develop
+                real-world skills.
               </p>
             </article>
           </div>
@@ -308,18 +296,17 @@ export default function About() {
           <h2>Learning stats.</h2>
 
           <p className="about-stats-note">
-            A snapshot of my learning journey based on my original
-            portfolio information.
+            A snapshot of my current coding practice and core focus areas.
           </p>
 
           <div className="about-stats-grid">
             <article>
-              <strong>20</strong>
+              <strong>20+</strong>
               <span>LeetCode problems solved</span>
             </article>
 
             <article>
-              <strong>2</strong>
+              <strong>02</strong>
               <span>Projects worked on</span>
             </article>
 
@@ -329,11 +316,6 @@ export default function About() {
               <p>Python · DSA · Web Development · AI</p>
             </article>
           </div>
-
-          <p className="about-stats-note">
-            Update these figures as your experience and project work
-            grow.
-          </p>
         </section>
 
         <section className="about-panel">
@@ -341,24 +323,17 @@ export default function About() {
           <h2>Turning learning into opportunities.</h2>
 
           <p>
-            My next steps are to keep practising DSA, strengthen my
-            React skills, improve my projects, and prepare for
-            opportunities where I can learn and contribute as a
-            developer.
+            My next steps are to keep practising DSA, strengthen my React skills,
+            improve my projects, and prepare for opportunities where I can
+            learn and contribute as a developer.
           </p>
 
           <div className="about-bottom-actions">
-            <a
-              className="about-button about-button-light"
-              href="/projects"
-            >
+            <a className="about-button about-button-light" href="/projects">
               Explore my projects ↗
             </a>
 
-            <a
-              className="about-text-link"
-              href={`mailto:${emailAddress}`}
-            >
+            <a className="about-text-link" href="/contact">
               Let's connect →
             </a>
           </div>
@@ -367,9 +342,7 @@ export default function About() {
         <button
           className="about-top-button"
           type="button"
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Scroll to top"
         >
           ↑ Top
@@ -379,9 +352,7 @@ export default function About() {
       <footer className="about-footer">
         <span>© {new Date().getFullYear()} Aaditya Patil</span>
 
-        <a href={`mailto:${emailAddress}`}>
-          Get in touch ↗
-        </a>
+        <a href={`mailto:${emailAddress}`}>Get in touch ↗</a>
 
         <a href="/">Back to Home ↑</a>
       </footer>

@@ -1,4 +1,3 @@
-
 import { useMemo, useState } from "react";
 import "./skills.css";
 
@@ -47,6 +46,14 @@ function Skills() {
     (skill) => skill.category === "tools"
   );
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -91,7 +98,11 @@ function Skills() {
     <div className="skills-page">
       <div className="skills-container">
         <header className="skills-nav">
-          <a className="skills-brand" href="/" aria-label="Aaditya Patil home">
+          <a
+            className="skills-brand"
+            href="/"
+            aria-label="Aaditya Patil home"
+          >
             AP<span>.</span>
           </a>
 
@@ -99,18 +110,24 @@ function Skills() {
             <a href="/">Home</a>
             <a href="/about">About</a>
             <a href="/education">Education</a>
-            <a
-              className="active"
-              href="/skills"
-              aria-current="page"
-            >
+            <a className="active" href="/skills" aria-current="page">
               Skills
             </a>
             <a href="/#work">My Goals</a>
-            <a href="/#projects">Projects</a>
-            <a href="/#contact">Contact</a>
+            <a href="/projects">Projects</a>
+            <a href="/contact">Contact</a>
           </nav>
         </header>
+
+        <button
+          className="page-back-button"
+          type="button"
+          onClick={handleBack}
+          aria-label="Go back to previous page"
+        >
+          <span aria-hidden="true">←</span>
+          Back
+        </button>
 
         <main id="skills-main">
           <section className="skills-hero">
@@ -120,7 +137,7 @@ function Skills() {
             </p>
 
             <h1>
-              My <span>Skills</span>
+              My <span>Skills.</span>
             </h1>
 
             <p className="skills-hero-description">
@@ -130,9 +147,7 @@ function Skills() {
 
             <div className="skills-hero-meta">
               <span>01 — TECHNICAL TOOLKIT</span>
-              <span>
-                {String(skills.length).padStart(2, "0")} SKILLS
-              </span>
+              <span>{String(skills.length).padStart(2, "0")} SKILLS</span>
             </div>
           </section>
 
@@ -228,12 +243,10 @@ function Skills() {
                   <div className="category-heading">
                     <div>
                       <p className="skills-eyebrow">02 / WORKFLOW</p>
-                      <h2>Tools & Technologies</h2>
+                      <h2>Tools &amp; Technologies</h2>
                     </div>
 
-                    <span>
-                      {String(toolSkills.length).padStart(2, "0")}
-                    </span>
+                    <span>{String(toolSkills.length).padStart(2, "0")}</span>
                   </div>
 
                   <div className="skills-grid">
@@ -278,8 +291,8 @@ function Skills() {
 
               <p>
                 I'm continuously improving these skills through coursework,
-                coding practice, and personal projects. The labels describe
-                my current learning focus, not professional proficiency.
+                coding practice, and personal projects. The labels describe my
+                current learning focus, not professional proficiency.
               </p>
             </div>
           </section>
@@ -296,11 +309,15 @@ function Skills() {
         </main>
 
         <footer className="skills-footer">
-          <a className="skills-brand" href="/" aria-label="Aaditya Patil home">
+          <a
+            className="skills-brand"
+            href="/"
+            aria-label="Aaditya Patil home"
+          >
             AP<span>.</span>
           </a>
 
-          <span>© 2026 Aaditya Patil</span>
+          <span>© {new Date().getFullYear()} Aaditya Patil</span>
           <span>LEARN. BUILD. IMPROVE.</span>
         </footer>
       </div>

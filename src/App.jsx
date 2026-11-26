@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -22,10 +21,15 @@ const soilProject = {
   description:
     "Explore my Soil Advisory System project, its implementation, and source code on GitHub.",
   html_url: `https://github.com/${GITHUB_USERNAME}/soil-advisory-system`,
-  language: null,
+  language: "Python",
   stargazers_count: 0,
   featured: true,
 };
+
+function normalizePath(rawPath) {
+  const clean = rawPath.replace(/\.html$/i, "").replace(/\/+$/, "");
+  return clean === "" || clean === "/index" ? "/" : clean;
+}
 
 function useTypingEffect(words) {
   const [wordIndex, setWordIndex] = useState(0);
@@ -92,8 +96,7 @@ function GitHubProjects() {
         }
 
         const featuredRepo = data.find(
-          (repo) =>
-            repo.name?.toLowerCase() === "soil-advisory-system"
+          (repo) => repo.name?.toLowerCase() === "soil-advisory-system"
         );
 
         const featuredProject = {
@@ -104,9 +107,8 @@ function GitHubProjects() {
                 html_url: featuredRepo.html_url || soilProject.html_url,
                 description:
                   featuredRepo.description || soilProject.description,
-                language: featuredRepo.language || null,
-                stargazers_count:
-                  featuredRepo.stargazers_count ?? 0,
+                language: featuredRepo.language || soilProject.language,
+                stargazers_count: featuredRepo.stargazers_count ?? 0,
               }
             : {}),
         };
@@ -211,31 +213,93 @@ function GitHubProjects() {
 
 export default function App() {
   const animatedRole = useTypingEffect(roles);
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const [currentPath, setCurrentPath] = useState(() =>
+    normalizePath(window.location.pathname)
+  );
 
-  // Page routing
-  if (path === "/about") return <About />;
-  if (path === "/education") return <Education />;
-  if (path === "/skills") return <Skills />;
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(normalizePath(window.location.pathname));
+    };
 
-  if (path === "/projects" || path === "/projects.html") {
-    return <Projects />;
-  }
+    const handleInternalNavigation = (event) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
 
-  if (path === "/contact" || path === "/contact.html") {
-    return <Contact />;
-  }
+      const anchor = event.target.closest("a");
+      if (!anchor) return;
 
-  // Home page
+      const href = anchor.getAttribute("href");
+      if (
+        !href ||
+        anchor.target === "_blank" ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        href.startsWith("http")
+      ) {
+        return;
+      }
+
+      if (href.startsWith("#")) {
+        return;
+      }
+
+      const url = new URL(anchor.href, window.location.origin);
+      if (url.origin !== window.location.origin) return;
+
+      event.preventDefault();
+      const nextPath = normalizePath(url.pathname);
+      window.history.pushState({}, "", url.pathname + url.hash);
+      setCurrentPath(nextPath);
+
+      if (url.hash) {
+        window.requestAnimationFrame(() => {
+          const targetEl = document.querySelector(url.hash);
+          targetEl?.scrollIntoView({ behavior: "smooth" });
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    document.addEventListener("click", handleInternalNavigation);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      document.removeEventListener("click", handleInternalNavigation);
+    };
+  }, []);
+
+  if (currentPath === "/about") return <About />;
+  if (currentPath === "/education") return <Education />;
+  if (currentPath === "/skills") return <Skills />;
+  if (currentPath === "/projects") return <Projects />;
+  if (currentPath === "/contact") return <Contact />;
+
   return (
     <div className="portfolio">
       <header className="portfolio-header">
-        <a className="portfolio-brand" href="/" aria-label="Aaditya Patil home">
+        <a
+          className="portfolio-brand"
+          href="/"
+          aria-label="Aaditya Patil home"
+        >
           AP<span>.</span>
         </a>
 
         <nav className="portfolio-nav" aria-label="Main navigation">
-          <a className="active" href="/" aria-current="page">Home</a>
+          <a className="active" href="/" aria-current="page">
+            Home
+          </a>
           <a href="/about">About</a>
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
@@ -262,7 +326,9 @@ export default function App() {
 
             <p className="role-button typing-role" aria-live="polite">
               {animatedRole}
-              <span className="typing-cursor" aria-hidden="true">|</span>
+              <span className="typing-cursor" aria-hidden="true">
+                |
+              </span>
             </p>
 
             <p className="portfolio-description">
@@ -296,9 +362,7 @@ export default function App() {
               />
             </div>
 
-            <span className="portrait-stamp">
-              LEARN. BUILD. IMPROVE.
-            </span>
+            <span className="portrait-stamp">LEARN. BUILD. IMPROVE.</span>
           </div>
         </section>
 

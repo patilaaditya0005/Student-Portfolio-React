@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./projects.css";
 
@@ -72,13 +71,12 @@ const getCategoryLabel = (category) => {
 export default function Projects() {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
-  const [expandedProjects, setExpandedProjects] = useState([]);
+  const [expandedProjects, setExpandedProjects] = useState([1]);
   const [previewImage, setPreviewImage] = useState(null);
 
   const previewTriggerRef = useRef(null);
   const lightboxCloseRef = useRef(null);
 
-  // FILTER AND SEARCH PROJECTS
   const filteredProjects = useMemo(() => {
     const query = search.trim().toLowerCase();
 
@@ -103,14 +101,10 @@ export default function Projects() {
     });
   }, [search, activeFilter]);
 
-  // CHECK WHETHER ALL VISIBLE PROJECTS ARE EXPANDED
   const allExpanded =
     filteredProjects.length > 0 &&
-    filteredProjects.every((project) =>
-      expandedProjects.includes(project.id)
-    );
+    filteredProjects.every((project) => expandedProjects.includes(project.id));
 
-  // TOGGLE INDIVIDUAL PROJECT
   const toggleProject = (id) => {
     setExpandedProjects((current) =>
       current.includes(id)
@@ -119,11 +113,8 @@ export default function Projects() {
     );
   };
 
-  // EXPAND OR COLLAPSE FILTERED PROJECTS
   const toggleAllProjects = () => {
-    const visibleProjectIds = filteredProjects.map(
-      (project) => project.id
-    );
+    const visibleProjectIds = filteredProjects.map((project) => project.id);
 
     if (allExpanded) {
       setExpandedProjects((current) =>
@@ -136,36 +127,32 @@ export default function Projects() {
     }
   };
 
-  // CHANGE PROJECT FILTER
   const handleFilter = (filter) => {
     setActiveFilter(filter);
     setExpandedProjects([]);
   };
 
-  // RESET SEARCH AND FILTERS
   const clearFilters = () => {
     setSearch("");
     setActiveFilter("all");
     setExpandedProjects([]);
   };
 
-  // OPEN IMAGE PREVIEW
   const openImagePreview = (image, event) => {
     previewTriggerRef.current = event.currentTarget;
     setPreviewImage(image);
   };
 
-  // CLOSE IMAGE PREVIEW
   const closeImagePreview = () => {
     setPreviewImage(null);
   };
 
-  // IMAGE LIGHTBOX KEYBOARD ACCESSIBILITY
   useEffect(() => {
     if (!previewImage) return undefined;
 
     const closeButton = lightboxCloseRef.current;
-
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     closeButton?.focus();
 
     const handleKeyDown = (event) => {
@@ -173,7 +160,6 @@ export default function Projects() {
         closeImagePreview();
       }
 
-      // Keep keyboard focus inside the lightbox.
       if (event.key === "Tab") {
         event.preventDefault();
         closeButton?.focus();
@@ -183,12 +169,20 @@ export default function Projects() {
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
       previewTriggerRef.current?.focus();
     };
   }, [previewImage]);
 
-  // SCROLL TO PAGE TOP
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -202,7 +196,6 @@ export default function Projects() {
         Skip to main content
       </a>
 
-      {/* HEADER */}
       <header className="site-header">
         <a className="brand" href="/" aria-label="Aaditya Patil - Home">
           AP<span>.</span>
@@ -213,6 +206,7 @@ export default function Projects() {
           <a href="/about">About</a>
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
+          <a href="/#work">My Goals</a>
           <a className="active" href="/projects" aria-current="page">
             Projects
           </a>
@@ -220,22 +214,27 @@ export default function Projects() {
         </nav>
       </header>
 
-      {/* MAIN CONTENT */}
       <main id="main-content" className="content-page">
-        {/* PAGE INTRO */}
+        <button
+          className="page-back-button"
+          type="button"
+          onClick={handleBack}
+          aria-label="Go back to previous page"
+        >
+          <span aria-hidden="true">←</span>
+          Back
+        </button>
+
         <section className="page-heading">
           <p className="eyebrow">SELECTED WORK</p>
 
           <h1>
-            Things I've <span>Built</span>
+            Things I've <span>Built.</span>
           </h1>
 
-          <p>
-            Projects that help me apply what I learn and keep improving.
-          </p>
+          <p>Projects that help me apply what I learn and keep improving.</p>
         </section>
 
-        {/* SEARCH AND FILTER */}
         <section
           className="panel project-explorer"
           aria-labelledby="projectExplorerTitle"
@@ -294,7 +293,6 @@ export default function Projects() {
           </div>
         </section>
 
-        {/* PROJECT CARDS */}
         <section className="project-list" aria-label="My projects">
           {filteredProjects.map((project) => {
             const isExpanded = expandedProjects.includes(project.id);
@@ -311,20 +309,14 @@ export default function Projects() {
                   className="project-summary"
                   aria-expanded={isExpanded}
                   aria-controls={
-                    isExpanded
-                      ? `project-details-${project.id}`
-                      : undefined
+                    isExpanded ? `project-details-${project.id}` : undefined
                   }
                   onClick={() => toggleProject(project.id)}
                 >
-                  <span className="project-number">
-                    {project.number}
-                  </span>
+                  <span className="project-number">{project.number}</span>
 
                   <span className="project-summary-main">
-                    <span className="project-title">
-                      {project.title}
-                    </span>
+                    <span className="project-title">{project.title}</span>
 
                     <span className="project-card-category">
                       {getCategoryLabel(project.category)}
@@ -342,16 +334,11 @@ export default function Projects() {
                     id={`project-details-${project.id}`}
                   >
                     {project.featured && (
-                      <span className="featured-label">
-                        FEATURED PROJECT
-                      </span>
+                      <span className="featured-label">FEATURED PROJECT</span>
                     )}
 
-                    <p className="project-description">
-                      {project.description}
-                    </p>
+                    <p className="project-description">{project.description}</p>
 
-                    {/* TECHNOLOGIES */}
                     <h3>Technologies used</h3>
 
                     <div className="project-tags">
@@ -360,7 +347,6 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    {/* KEY FEATURES */}
                     <h3>Key features</h3>
 
                     <ul className="project-feature-list">
@@ -369,7 +355,6 @@ export default function Projects() {
                       ))}
                     </ul>
 
-                    {/* PROJECT SCREENSHOTS */}
                     {project.images.length > 0 && (
                       <>
                         <h3>Project screenshots</h3>
@@ -404,7 +389,6 @@ export default function Projects() {
                       </>
                     )}
 
-                    {/* PROJECT DEMO VIDEO */}
                     {project.video && (
                       <>
                         <h3>Project demo</h3>
@@ -419,16 +403,12 @@ export default function Projects() {
                           playsInline
                           preload="metadata"
                         >
-                          <source
-                            src={project.video}
-                            type="video/mp4"
-                          />
+                          <source src={project.video} type="video/mp4" />
                           Your browser does not support video playback.
                         </video>
                       </>
                     )}
 
-                    {/* PROJECT LINKS */}
                     <div className="project-details-actions">
                       <a
                         className="project-github-link"
@@ -447,7 +427,6 @@ export default function Projects() {
           })}
         </section>
 
-        {/* EMPTY SEARCH RESULT */}
         {filteredProjects.length === 0 && (
           <div className="panel no-projects" role="status">
             <h3>No matching projects found.</h3>
@@ -466,14 +445,12 @@ export default function Projects() {
           </div>
         )}
 
-        {/* BACK HOME */}
         <div className="projects-home-action">
           <a className="back-home-button" href="/">
             ← Back to Home
           </a>
         </div>
 
-        {/* BACK TO TOP */}
         <button
           type="button"
           className="projects-back-to-top"
@@ -484,7 +461,6 @@ export default function Projects() {
         </button>
       </main>
 
-      {/* IMAGE PREVIEW LIGHTBOX */}
       {previewImage && (
         <div
           className="image-lightbox"
@@ -507,19 +483,15 @@ export default function Projects() {
             className="lightbox-content"
             onClick={(event) => event.stopPropagation()}
           >
-            <img
-              src={previewImage.src}
-              alt={previewImage.alt}
-            />
+            <img src={previewImage.src} alt={previewImage.alt} />
 
             <p>{previewImage.caption}</p>
           </div>
         </div>
       )}
 
-      {/* FOOTER */}
       <footer className="site-footer">
-        <span>© 2026 Aaditya Patil</span>
+        <span>© {new Date().getFullYear()} Aaditya Patil</span>
         <a href="/contact">Contact ↗</a>
       </footer>
     </div>

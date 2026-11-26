@@ -1,4 +1,3 @@
-
 .education-page {
   --edu-bg: #080808;
   --edu-panel: #111111;
@@ -7,7 +6,7 @@
   --edu-muted: #a2a2a2;
 
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse at 83% 8%, #222222 0, transparent 35%),
     radial-gradient(ellipse at 5% 65%, #171717 0, transparent 30%),
@@ -15,21 +14,6 @@
   color: var(--edu-text);
   font-family: "DM Sans", Arial, sans-serif;
   line-height: 1.7;
-}
-
-.education-page *,
-.education-page *::before,
-.education-page *::after {
-  box-sizing: border-box;
-}
-
-.education-page a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.education-page button {
-  font: inherit;
 }
 
 .education-page h1,
@@ -114,47 +98,34 @@
 }
 
 .education-nav a:hover::after,
-.education-nav a:focus-visible::after {
+.education-nav a:focus-visible::after,
+.education-nav a.active::after {
   right: 0;
 }
 
-/* Consistent back button across all pages */
-.page-back-button {
+.education-page .page-back-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   min-height: 44px;
-  margin-top: 20px;
+  margin-top: 24px;
   padding: 10px 16px;
   border: 1px solid #454545;
   border-radius: 6px;
   background: #151515;
   color: #f5f5f5;
-  font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  cursor: pointer;
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
 }
 
-.page-back-button:hover {
+.education-page .page-back-button:hover {
   background: #252525;
   border-color: #999999;
   transform: translateX(-3px);
-}
-
-.page-back-button:focus-visible {
-  outline: 2px solid #f2f2f2;
-  outline-offset: 4px;
-}
-
-.education-page a:focus-visible,
-.education-page button:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 5px;
 }
 
 .education-hero {
@@ -162,7 +133,7 @@
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   align-items: center;
   gap: clamp(32px, 6vw, 90px);
-  padding: 84px 0 94px;
+  padding: 54px 0 94px;
 }
 
 .education-hero-copy {
@@ -577,7 +548,6 @@
   text-align: left;
   font-size: 0.84rem;
   font-weight: 700;
-  cursor: pointer;
 }
 
 .education-arrow {
@@ -707,6 +677,7 @@
   gap: 15px;
   margin-top: 28px;
   padding: 24px 0;
+  border-top: 1px solid #ffffff19;
   color: #929292;
   font-size: 0.77rem;
 }
@@ -736,7 +707,7 @@
   .education-hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 35px;
-    padding: 58px 0 65px;
+    padding: 40px 0 65px;
   }
 
   .education-hero-card {
@@ -787,7 +758,7 @@
   }
 
   .education-hero {
-    padding: 48px 0 52px;
+    padding: 36px 0 52px;
   }
 
   .education-hero h1 {
@@ -889,16 +860,5 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 9px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .education-page *,
-  .education-page *::before,
-  .education-page *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }

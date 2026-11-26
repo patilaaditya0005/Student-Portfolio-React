@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./contact.css";
 
@@ -125,6 +124,14 @@ export default function Contact() {
     }, 2000);
   };
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  };
+
   return (
     <div className="portfolio contact-page">
       <a className="skip-link" href="#contact-main">
@@ -146,12 +153,9 @@ export default function Contact() {
           <a href="/about">About</a>
           <a href="/education">Education</a>
           <a href="/skills">Skills</a>
+          <a href="/#work">My Goals</a>
           <a href="/projects">Projects</a>
-          <a
-            className="active"
-            href="/contact"
-            aria-current="page"
-          >
+          <a className="active" href="/contact" aria-current="page">
             Contact
           </a>
         </nav>
@@ -159,17 +163,27 @@ export default function Contact() {
 
       {/* MAIN CONTENT */}
       <main id="contact-main" className="contact-content">
+        <button
+          className="page-back-button"
+          type="button"
+          onClick={handleBack}
+          aria-label="Go back to previous page"
+        >
+          <span aria-hidden="true">←</span>
+          Back
+        </button>
+
         {/* PAGE HEADING */}
         <section className="contact-heading">
           <p className="portfolio-eyebrow">HAVE AN IDEA?</p>
 
           <h1>
-            Let's <span>Connect</span>
+            Let's <span>Connect.</span>
           </h1>
 
           <p>
-            Interested in a project, internship, or collaboration?
-            Send me a message.
+            Interested in a project, internship, or collaboration? Send me a
+            message.
           </p>
         </section>
 
@@ -185,9 +199,8 @@ export default function Contact() {
             <h2>Good things start with a conversation.</h2>
 
             <p>
-              I'm interested in learning opportunities, project
-              collaborations, and connecting with people who enjoy
-              building things.
+              I'm interested in learning opportunities, project collaborations,
+              and connecting with people who enjoy building things.
             </p>
 
             <a className="contact-email" href={`mailto:${EMAIL}`}>
@@ -213,11 +226,7 @@ export default function Contact() {
           </div>
 
           {/* CONTACT FORM */}
-          <form
-            className="contact-form"
-            onSubmit={handleSubmit}
-            noValidate
-          >
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
             {/* NAME */}
             <label htmlFor="contact-name">Full name</label>
 
@@ -232,18 +241,12 @@ export default function Contact() {
               value={form.name}
               onChange={handleChange}
               aria-invalid={Boolean(errors.name)}
-              aria-describedby={
-                errors.name ? "name-error" : undefined
-              }
+              aria-describedby={errors.name ? "name-error" : undefined}
               required
             />
 
             {errors.name && (
-              <span
-                className="contact-error"
-                id="name-error"
-                role="alert"
-              >
+              <span className="contact-error" id="name-error" role="alert">
                 {errors.name}
               </span>
             )}
@@ -261,26 +264,18 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               aria-invalid={Boolean(errors.email)}
-              aria-describedby={
-                errors.email ? "email-error" : undefined
-              }
+              aria-describedby={errors.email ? "email-error" : undefined}
               required
             />
 
             {errors.email && (
-              <span
-                className="contact-error"
-                id="email-error"
-                role="alert"
-              >
+              <span className="contact-error" id="email-error" role="alert">
                 {errors.email}
               </span>
             )}
 
             {/* REASON */}
-            <label htmlFor="contact-reason">
-              Reason for contact
-            </label>
+            <label htmlFor="contact-reason">Reason for contact</label>
 
             <select
               id="contact-reason"
@@ -317,11 +312,7 @@ export default function Contact() {
             />
 
             {errors.message && (
-              <span
-                className="contact-error"
-                id="message-error"
-                role="alert"
-              >
+              <span className="contact-error" id="message-error" role="alert">
                 {errors.message}
               </span>
             )}
@@ -358,9 +349,8 @@ export default function Contact() {
             </p>
 
             <p className="contact-form-note">
-              Submitting opens your default email application with
-              your message pre-filled. Direct website submissions
-              require a backend or form service.
+              Submitting opens your default email application with your message
+              pre-filled.
             </p>
           </form>
         </section>
@@ -375,7 +365,7 @@ export default function Contact() {
 
       {/* FOOTER */}
       <footer className="portfolio-footer">
-        <span>© 2026 Aaditya Patil</span>
+        <span>© {new Date().getFullYear()} Aaditya Patil</span>
         <a href="/">Back to home ↑</a>
       </footer>
     </div>

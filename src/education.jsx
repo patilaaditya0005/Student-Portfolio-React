@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./education.css";
 
@@ -71,24 +70,24 @@ export default function Education() {
 
       <div className="education-container">
         <header className="education-header">
-          <a className="education-brand" href="/" aria-label="Aaditya Patil home">
+          <a
+            className="education-brand"
+            href="/"
+            aria-label="Aaditya Patil home"
+          >
             AP<span>.</span>
           </a>
 
           <nav className="education-nav" aria-label="Main navigation">
             <a href="/">Home</a>
             <a href="/about">About</a>
-            <a
-              href="/education"
-              className="active"
-              aria-current="page"
-            >
+            <a href="/education" className="active" aria-current="page">
               Education
             </a>
             <a href="/skills">Skills</a>
             <a href="/#work">My Goals</a>
-            <a href="/#projects">Projects</a>
-            <a href="/#contact">Contact</a>
+            <a href="/projects">Projects</a>
+            <a href="/contact">Contact</a>
           </nav>
         </header>
 
@@ -116,8 +115,8 @@ export default function Education() {
               </h1>
 
               <p className="education-hero-description">
-                My education is the foundation of my journey into technology.
-                I am focused on strengthening my computer science knowledge,
+                My education is the foundation of my journey into technology. I
+                am focused on strengthening my computer science knowledge,
                 developing practical skills, and growing one step at a time.
               </p>
 
@@ -131,7 +130,7 @@ export default function Education() {
 
                 <a
                   className="education-button education-button-outline"
-                  href="/#projects"
+                  href="/projects"
                 >
                   View my projects <span>↗</span>
                 </a>
@@ -150,7 +149,7 @@ export default function Education() {
 
               <p className="education-card-label">CURRENT FOCUS</p>
 
-              <h2>Computer Science & Engineering</h2>
+              <h2>Computer Science &amp; Engineering</h2>
 
               <p className="education-card-description">
                 Learning the fundamentals. Practising consistently. Building
@@ -187,10 +186,7 @@ export default function Education() {
 
             <div className="education-timeline">
               {academicJourney.map((item) => (
-                <article
-                  className="education-timeline-item"
-                  key={item.number}
-                >
+                <article className="education-timeline-item" key={item.number}>
                   <div className="education-timeline-marker">
                     <span>{item.number}</span>
                   </div>
@@ -209,9 +205,7 @@ export default function Education() {
 
                     <h3>{item.degree}</h3>
 
-                    <p className="education-institution">
-                      {item.institution}
-                    </p>
+                    <p className="education-institution">{item.institution}</p>
 
                     <p className="education-record-description">
                       {item.description}
@@ -230,18 +224,16 @@ export default function Education() {
 
           <section className="education-more-section">
             <div className="education-more-copy">
-              <p className="education-eyebrow">
-                02 / BEYOND THE CLASSROOM
-              </p>
+              <p className="education-eyebrow">02 / BEYOND THE CLASSROOM</p>
 
               <h2>
                 Education is more than <span>a qualification.</span>
               </h2>
 
               <p>
-                I want to turn the concepts I study into skills I can use.
-                That means practising code, exploring new technologies,
-                solving problems, and learning through hands-on projects.
+                I want to turn the concepts I study into skills I can use. That
+                means practising code, exploring new technologies, solving
+                problems, and learning through hands-on projects.
               </p>
             </div>
 
@@ -250,9 +242,7 @@ export default function Education() {
                 <span className="education-panel-symbol">+</span>
 
                 <div>
-                  <p className="education-eyebrow">
-                    CONTINUOUS DEVELOPMENT
-                  </p>
+                  <p className="education-eyebrow">CONTINUOUS DEVELOPMENT</p>
 
                   <h3>My learning approach</h3>
                 </div>
@@ -271,8 +261,8 @@ export default function Education() {
 
                   <p>
                     My goal is to connect academic concepts with practical
-                    experience, build meaningful projects, and keep improving
-                    as a software developer.
+                    experience, build meaningful projects, and keep improving as
+                    a software developer.
                   </p>
                 </div>
               )}
@@ -288,9 +278,7 @@ export default function Education() {
 
                 <span
                   className={
-                    showMore
-                      ? "education-arrow rotated"
-                      : "education-arrow"
+                    showMore ? "education-arrow rotated" : "education-arrow"
                   }
                   aria-hidden="true"
                 >
@@ -303,9 +291,7 @@ export default function Education() {
           <section className="education-goals-section">
             <div className="education-goals-heading">
               <div>
-                <p className="education-eyebrow">
-                  03 / WHAT COMES NEXT
-                </p>
+                <p className="education-eyebrow">03 / WHAT COMES NEXT</p>
 
                 <h2>
                   What I’m working <span>toward.</span>
@@ -320,15 +306,10 @@ export default function Education() {
 
             <div className="education-goals-grid">
               {learningGoals.map((goal) => (
-                <article
-                  className="education-goal-card"
-                  key={goal.number}
-                >
+                <article className="education-goal-card" key={goal.number}>
                   <div className="education-goal-top">
                     <span>{goal.number} / LEARNING GOAL</span>
-                    <span className="education-goal-symbol">
-                      {goal.symbol}
-                    </span>
+                    <span className="education-goal-symbol">{goal.symbol}</span>
                   </div>
 
                   <h3>{goal.title}</h3>
@@ -361,7 +342,7 @@ export default function Education() {
 
             <a
               className="education-button education-button-light"
-              href="/#projects"
+              href="/projects"
             >
               Explore my work <span>↗</span>
             </a>
