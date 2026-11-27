@@ -339,7 +339,7 @@ export default function About() {
           </div>
         </section>
 
-        <button
+       {/* <button
           className="about-top-button"
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -347,6 +347,7 @@ export default function About() {
         >
           ↑ Top
         </button>
+        */}
       </main>
 
       <footer className="about-footer">

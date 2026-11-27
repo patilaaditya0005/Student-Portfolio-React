@@ -356,7 +356,7 @@ export default function App() {
           <div className="portfolio-portrait">
             <div className="portrait-frame">
               <img
-                src="/assets/portrait-cinematic.jpeg"
+                src="/assets/me.jpeg"
                 alt="Portrait of Aaditya Patil"
                 loading="eager"
               />

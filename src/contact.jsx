@@ -355,12 +355,12 @@ export default function Contact() {
           </form>
         </section>
 
-        {/* BACK HOME */}
+        {/* BACK HOME
         <div className="contact-home-action">
           <a className="page-back-button" href="/">
             ← Back to Home
           </a>
-        </div>
+        </div>*/}
       </main>
 
       {/* FOOTER */}

@@ -451,14 +451,14 @@ export default function Projects() {
           </a>
         </div>
 
-        <button
+        {/*<button
           type="button"
           className="projects-back-to-top"
           onClick={scrollToTop}
           aria-label="Back to top"
         >
           ↑ Top
-        </button>
+        </button>*/}
       </main>
 
       {previewImage && (
