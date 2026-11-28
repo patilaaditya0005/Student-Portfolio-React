@@ -1,0 +1,1341 @@
+
+/* =========================================
+   MOBILE REDESIGN — HOME PAGE
+   Desktop styles remain untouched
+========================================= */
+
+@media (max-width: 760px) {
+  .portfolio {
+    padding: 0 20px;
+  }
+
+  /* Header */
+  .portfolio-header {
+    min-height: 0;
+    padding: 19px 0 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .portfolio-brand {
+    font-size: 1.55rem;
+  }
+
+  .portfolio-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px 19px;
+  }
+
+  .portfolio-nav a {
+    font-size: 0.78rem;
+    padding: 5px 0;
+  }
+
+  /* Hero */
+  .portfolio-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+    padding: 38px 0 48px;
+  }
+
+  /* Portrait comes first on mobile */
+  .portfolio-portrait {
+    order: -1;
+    align-self: center;
+    width: min(76%, 280px);
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 130px 130px 8px 8px;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .portrait-stamp {
+    right: -8px;
+    bottom: 18px;
+    padding: 8px 10px;
+    font-size: 0.55rem;
+    white-space: nowrap;
+  }
+
+  /* Introduction */
+  .portfolio-copy {
+    width: 100%;
+  }
+
+  .portfolio-eyebrow {
+    font-size: 0.64rem;
+    line-height: 1.8;
+    letter-spacing: 0.13em;
+  }
+
+  .portfolio-copy h1 {
+    margin: 15px 0 18px;
+    font-size: clamp(2.25rem, 9.5vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+  }
+
+  .typing-role {
+    max-width: 100%;
+    min-height: 40px;
+    font-size: 0.78rem;
+  }
+
+  .portfolio-description {
+    margin: 18px 0;
+    font-size: 0.91rem;
+    line-height: 1.8;
+  }
+
+  .portfolio-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 22px 0 17px;
+  }
+
+  .portfolio-actions a,
+  .github-profile-link .action-secondary {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .portfolio-status {
+    font-size: 0.74rem;
+    line-height: 1.7;
+  }
+
+  /* Home sections */
+  .portfolio-intro,
+  .goals-section,
+  .projects-showcase {
+    padding: 45px 0;
+  }
+
+  .portfolio-intro h2 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    line-height: 1.2;
+  }
+
+  .portfolio-intro > p:last-of-type,
+  .projects-intro {
+    font-size: 0.91rem;
+    line-height: 1.8;
+  }
+
+  .section-heading {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.055em;
+  }
+
+  .goal-grid,
+  .project-showcase-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .goal-card,
+  .showcase-card {
+    padding: 21px;
+  }
+
+  .showcase-icon {
+    margin: 22px 0 17px;
+  }
+
+  .showcase-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .project-tags {
+    gap: 7px;
+  }
+
+  .portfolio-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 20px 0;
+  }
+}
+
+/* Compact phones */
+@media (max-width: 420px) {
+  .portfolio {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .portfolio-nav {
+    gap: 9px 13px;
+  }
+
+  .portfolio-nav a {
+    font-size: 0.73rem;
+  }
+
+  .portfolio-portrait {
+    width: min(78%, 250px);
+  }
+
+  .portfolio-copy h1 {
+    font-size: clamp(2.05rem, 9.5vw, 2.6rem);
+  }
+
+  .portrait-stamp {
+    right: -5px;
+    font-size: 0.5rem;
+  }
+
+  .goal-card,
+  .showcase-card {
+    padding: 18px;
+  }
+}
+
+
+/* =========================================
+   PHASE 2 — EDUCATION PAGE MOBILE POLISH
+   Desktop styles remain untouched
+========================================= */
+
+@media (max-width: 760px) {
+  .education-page {
+    overflow-x: clip;
+  }
+
+  .education-container {
+    width: calc(100% - 36px);
+  }
+
+  /* Header */
+  .education-header {
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .education-brand {
+    font-size: 1.6rem;
+  }
+
+  .education-nav {
+    gap: 10px 17px;
+  }
+
+  .education-nav a {
+    padding: 7px 0;
+    font-size: 0.76rem;
+  }
+
+  /* Education hero */
+  .education-hero {
+    gap: 26px;
+    padding: 36px 0 48px;
+  }
+
+  .education-hero-copy {
+    width: 100%;
+  }
+
+  .education-eyebrow {
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
+  }
+
+  .education-hero h1 {
+    font-size: clamp(2.45rem, 10vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.065em;
+  }
+
+  .education-hero-description {
+    margin-top: 17px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .education-hero-actions {
+    gap: 10px;
+    margin-top: 23px;
+  }
+
+  .education-button {
+    min-height: 48px;
+    border-radius: 6px;
+  }
+
+  /* Highlight card */
+  .education-hero-card {
+    max-width: none;
+    padding: 23px;
+    border-radius: 9px;
+  }
+
+  .education-monogram {
+    margin: 26px 0 22px;
+    font-size: clamp(4.2rem, 19vw, 6rem);
+  }
+
+  .education-hero-card h2 {
+    font-size: 1.45rem;
+    line-height: 1.3;
+  }
+
+  .education-card-description {
+    font-size: 0.86rem;
+    line-height: 1.8;
+  }
+
+  /* Intro */
+  .education-intro {
+    gap: 13px;
+    padding: 38px 0 27px;
+  }
+
+  .education-intro h2,
+  .education-more-copy h2,
+  .education-goals-heading h2 {
+    font-size: clamp(1.9rem, 8vw, 2.55rem);
+    line-height: 1.18;
+  }
+
+  .education-intro > p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  /* Timeline */
+  .education-timeline-section {
+    padding: 20px 15px;
+    border-radius: 8px;
+  }
+
+  .education-section-topline {
+    font-size: 0.59rem;
+    letter-spacing: 0.1em;
+  }
+
+  .education-timeline-item {
+    gap: 12px;
+    padding-bottom: 27px;
+  }
+
+  .education-record h3 {
+    font-size: 1.16rem;
+    line-height: 1.35;
+  }
+
+  .education-institution {
+    font-size: 0.87rem;
+    line-height: 1.6;
+  }
+
+  .education-record-description {
+    font-size: 0.84rem;
+    line-height: 1.8;
+  }
+
+  .education-tags {
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .education-tags span {
+    font-size: 0.66rem;
+  }
+
+  /* More about education */
+  .education-more-section {
+    gap: 22px;
+    padding: 48px 0;
+  }
+
+  .education-more-panel {
+    padding: 19px;
+  }
+
+  .education-more-panel-heading {
+    gap: 12px;
+  }
+
+  .education-more-panel-heading h3 {
+    font-size: 1.05rem;
+  }
+
+  .education-expanded-content p {
+    font-size: 0.84rem;
+    line-height: 1.8;
+  }
+
+  /* Learning goals */
+  .education-goals-section {
+    padding: 48px 0;
+  }
+
+  .education-goals-heading {
+    gap: 12px;
+    margin-bottom: 21px;
+  }
+
+  .education-goals-heading > p {
+    font-size: 0.86rem;
+    line-height: 1.8;
+  }
+
+  .education-goals-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .education-goal-card,
+  .education-goal-card:last-child {
+    min-height: auto;
+    grid-column: auto;
+    padding: 21px;
+  }
+
+  .education-goal-card h3 {
+    margin: 20px 0 9px;
+    font-size: 1.2rem;
+  }
+
+  .education-goal-card > p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  /* Closing */
+  .education-closing {
+    padding: 37px 19px;
+    border-radius: 8px;
+  }
+
+  .education-closing h2 {
+    font-size: clamp(1.9rem, 8vw, 2.55rem);
+    line-height: 1.2;
+  }
+
+  .education-closing > p:not(.education-eyebrow) {
+    font-size: 0.86rem;
+    line-height: 1.8;
+  }
+
+  .education-footer {
+    gap: 10px;
+    padding: 20px 0;
+    font-size: 0.73rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .education-container {
+    width: calc(100% - 30px);
+  }
+
+  .education-nav {
+    gap: 9px 13px;
+  }
+
+  .education-nav a {
+    font-size: 0.72rem;
+  }
+
+  .education-timeline-section {
+    padding: 17px 11px;
+  }
+
+  .education-timeline-item {
+    gap: 9px;
+  }
+
+  .education-record h3 {
+    font-size: 1.08rem;
+  }
+}
+
+
+/* =========================================
+   PHASE 3 — SKILLS PAGE MOBILE REDESIGN
+   Desktop CSS remains untouched
+========================================= */
+
+@media (max-width: 760px) {
+
+  .skills-page {
+    overflow-x: clip;
+  }
+
+  .skills-container {
+    width: calc(100% - 36px);
+  }
+
+  /* Navigation */
+  .skills-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    padding: 19px 0;
+  }
+
+  .skills-brand {
+    font-size: 1.65rem;
+  }
+
+  .skills-nav nav {
+    width: 100%;
+    gap: 10px 19px;
+  }
+
+  .skills-nav nav a {
+    padding: 6px 0;
+    font-size: 0.77rem;
+  }
+
+  /* Hero */
+  .skills-hero {
+    padding: 38px 0 27px;
+  }
+
+  .skills-eyebrow {
+    margin-bottom: 14px;
+    font-size: 0.64rem;
+    letter-spacing: 0.13em;
+    line-height: 1.7;
+  }
+
+  .skills-hero h1 {
+    font-size: clamp(2.45rem, 10vw, 3.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+  }
+
+  .skills-hero-description {
+    margin-top: 18px;
+    font-size: 0.91rem;
+    line-height: 1.85;
+  }
+
+  .skills-hero-meta {
+    justify-content: flex-start;
+    gap: 12px 20px;
+    margin-top: 30px;
+    padding: 15px 0;
+    font-size: 0.63rem;
+    line-height: 1.6;
+    letter-spacing: 0.09em;
+  }
+
+  /* Skill explorer */
+  .skills-explorer {
+    margin-top: 23px;
+    padding: 21px;
+    border-radius: 9px;
+  }
+
+  .explorer-heading,
+  .category-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .explorer-heading h2,
+  .category-heading h2,
+  .skills-learning h2 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .result-count,
+  .category-heading > span {
+    font-size: 0.75rem;
+    white-space: normal;
+  }
+
+  /* Search */
+  .skills-search {
+    gap: 10px;
+    margin-top: 21px;
+    padding: 0 12px;
+  }
+
+  .skills-search input {
+    height: 48px;
+    font-size: 0.88rem;
+  }
+
+  /* Categories */
+  .skills-groups {
+    gap: 39px;
+    margin-top: 37px;
+  }
+
+  .category-heading {
+    margin-bottom: 17px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  /* Individual cards */
+  .skill-card {
+    min-height: 150px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .skill-number,
+  .skill-status {
+    font-size: 0.62rem;
+  }
+
+  .skill-card h3 {
+    margin: 19px 0;
+    font-size: 1.04rem;
+    line-height: 1.3;
+  }
+
+  .skill-card-bottom {
+    gap: 7px;
+    padding-top: 11px;
+    font-size: 0.65rem;
+  }
+
+  .skill-arrow {
+    font-size: 0.85rem;
+  }
+
+  /* Empty search state */
+  .skills-empty {
+    padding: 38px 17px;
+  }
+
+  .skills-empty h2 {
+    font-size: 1.3rem;
+  }
+
+  .skills-empty p {
+    font-size: 0.84rem;
+    line-height: 1.8;
+  }
+
+  /* Learning section */
+  .skills-learning {
+    grid-template-columns: 43px minmax(0, 1fr);
+    gap: 15px;
+    margin-top: 42px;
+    padding: 21px;
+    border-radius: 9px;
+  }
+
+  .learning-symbol {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  .skills-learning p:last-child {
+    margin-top: 11px;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  /* Bottom navigation */
+  .skills-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+    margin: 32px 0;
+  }
+
+  .skills-bottom a,
+  .skills-bottom button {
+    min-height: 40px;
+  }
+
+  /* Footer */
+  .skills-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 11px;
+    padding: 21px 0;
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  .skills-footer > span:last-child {
+    width: auto;
+  }
+}
+
+/* Small phones */
+@media (max-width: 390px) {
+
+  .skills-container {
+    width: calc(100% - 30px);
+  }
+
+  .skills-nav nav {
+    gap: 9px 13px;
+  }
+
+  .skills-nav nav a {
+    font-size: 0.72rem;
+  }
+
+  .skills-explorer {
+    padding: 16px;
+  }
+
+  .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .skill-card {
+    min-height: 135px;
+    padding: 17px;
+  }
+
+  .skills-learning {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+
+/* =========================================
+   PHASE 4 — PROJECTS PAGE MOBILE POLISH
+   Desktop styles remain untouched
+========================================= */
+
+@media (max-width: 760px) {
+  .projects-page .site-header,
+  .projects-page .content-page,
+  .projects-page .site-footer {
+    width: calc(100% - 36px);
+  }
+
+  /* Header */
+  .projects-page .site-header {
+    padding: 18px 0;
+    gap: 15px;
+  }
+
+  .projects-page .brand {
+    font-size: 1.65rem;
+  }
+
+  .projects-page .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px 16px;
+  }
+
+  .projects-page .site-nav a {
+    font-size: 0.76rem;
+  }
+
+  /* Page heading */
+  .projects-page .content-page {
+    padding: 32px 0 42px;
+  }
+
+  .projects-page .page-heading {
+    margin-bottom: 30px;
+  }
+
+  .projects-page .eyebrow {
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+  }
+
+  .projects-page .page-heading h1 {
+    font-size: clamp(2.35rem, 10vw, 3.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+  }
+
+  .projects-page .page-heading > p:last-child {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .projects-page .page-back-button {
+    min-height: 43px;
+    margin-bottom: 20px;
+  }
+
+  /* Project explorer */
+  .projects-page .project-explorer {
+    margin-bottom: 22px;
+    padding: 19px;
+    border-radius: 9px;
+  }
+
+  .projects-page .project-explorer h2 {
+    margin-bottom: 17px;
+    font-size: 1.3rem;
+  }
+
+  .projects-page .project-search-label {
+    font-size: 0.83rem;
+  }
+
+  .projects-page #projectSearch {
+    width: 100%;
+    max-width: none;
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  /* Filter buttons */
+  .projects-page .project-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 9px;
+    padding: 3px 1px 10px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projects-page .project-filter {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .projects-page .project-explorer-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .projects-page .project-action-button {
+    min-height: 44px;
+  }
+
+  /* Project cards */
+  .projects-page .project-card {
+    margin-bottom: 13px;
+    border-radius: 9px;
+  }
+
+  .projects-page .project-summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+    padding: 19px 15px;
+  }
+
+  .projects-page .project-number {
+    font-size: 0.68rem;
+  }
+
+  .projects-page .project-title {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .projects-page .project-card-category {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .projects-page .open-label {
+    font-size: 0.7rem;
+    white-space: normal;
+    text-align: right;
+  }
+
+  /* Expanded project details */
+  .projects-page .project-details {
+    padding: 19px 15px 22px;
+  }
+
+  .projects-page .featured-label {
+    font-size: 0.64rem;
+  }
+
+  .projects-page .project-description {
+    margin: 16px 0;
+    font-size: 0.87rem;
+    line-height: 1.8;
+  }
+
+  .projects-page .project-details h3 {
+    margin: 23px 0 12px;
+    font-size: 1.08rem;
+  }
+
+  .projects-page .project-tags {
+    gap: 7px;
+  }
+
+  .projects-page .project-tags span {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  .projects-page .project-feature-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding-left: 19px;
+    font-size: 0.85rem;
+  }
+
+  /* Gallery */
+  .projects-page .project-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .projects-page .project-image-button img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: 280px;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+  }
+
+  .projects-page .image-preview-label {
+    top: 9px;
+    right: 9px;
+    font-size: 0.68rem;
+  }
+
+  .projects-page .project-image-caption {
+    padding: 10px;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  /* Demo video */
+  .projects-page .demo-video {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 7px;
+  }
+
+  /* Action buttons */
+  .projects-page .project-details-actions {
+    margin-top: 20px;
+  }
+
+  .projects-page .project-github-link,
+  .projects-page .back-home-button {
+    min-height: 46px;
+    justify-content: center;
+    font-size: 0.82rem;
+  }
+
+  .projects-page .projects-home-action {
+    margin: 30px 0 12px;
+  }
+
+  .projects-page .projects-back-to-top {
+    min-height: 43px;
+  }
+
+  /* Lightbox */
+  .projects-page .image-lightbox {
+    padding: 15px;
+  }
+
+  .projects-page .lightbox-content img {
+    max-height: 72vh;
+  }
+
+  .projects-page .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Footer */
+  .projects-page .site-footer {
+    min-height: auto;
+    margin-top: 20px;
+    padding: 20px 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.76rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 390px) {
+  .projects-page .site-header,
+  .projects-page .content-page,
+  .projects-page .site-footer {
+    width: calc(100% - 30px);
+  }
+
+  .projects-page .site-nav {
+    gap: 9px 13px;
+  }
+
+  .projects-page .site-nav a {
+    font-size: 0.72rem;
+  }
+
+  .projects-page .project-explorer {
+    padding: 15px;
+  }
+
+  .projects-page .project-summary {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .projects-page .open-label {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .projects-page .project-details {
+    padding: 17px 13px;
+  }
+}
+
+
+/* =========================================
+   PHASE 5 - CONTACT PAGE MOBILE POLISH
+   Desktop CSS remains unchanged
+========================================= */
+
+@media (max-width: 760px) {
+  .contact-page {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .contact-content {
+    width: min(100% - 36px, 560px);
+    margin-inline: auto;
+    padding: 24px 0 48px;
+  }
+
+  .contact-page .page-back-button {
+    min-height: 42px;
+    margin-bottom: 24px;
+    padding: 10px 14px;
+  }
+
+  .contact-heading {
+    margin-bottom: 26px;
+  }
+
+  .contact-heading h1 {
+    margin: 12px 0 14px;
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+  }
+
+  .contact-heading > p:last-child {
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  .contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .contact-note,
+  .contact-form {
+    width: 100%;
+    min-width: 0;
+    padding: 22px 18px;
+    border-radius: 9px;
+  }
+
+  .contact-note h2 {
+    font-size: clamp(1.65rem, 7vw, 2.1rem);
+    line-height: 1.2;
+  }
+
+  .contact-note > p:not(.portfolio-eyebrow):not(.contact-form-note) {
+    font-size: 0.93rem;
+    line-height: 1.75;
+  }
+
+  .contact-email {
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-copy-button,
+  .contact-submit-button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+
+  .contact-form {
+    gap: 9px;
+  }
+
+  .contact-form label {
+    margin-top: 7px;
+    font-size: 0.86rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 49px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .contact-form textarea {
+    min-height: 130px;
+  }
+
+  .contact-message-meta {
+    font-size: 0.74rem;
+  }
+
+  .contact-form-note {
+    overflow-wrap: anywhere;
+  }
+
+  .contact-home-action {
+    margin-top: 26px;
+  }
+
+  .contact-home-action .page-back-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .contact-content {
+    width: calc(100% - 28px);
+  }
+
+  .contact-note,
+  .contact-form {
+    padding: 19px 15px;
+  }
+
+  .contact-heading h1 {
+    font-size: 2.35rem;
+  }
+}
+
+
+/* =========================================
+   PHASE 6 - ABOUT PAGE MOBILE POLISH
+   Desktop CSS remains unchanged
+========================================= */
+
+@media (max-width: 760px) {
+  .about-page {
+    padding-inline: 16px;
+  }
+
+  .about-header {
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .about-nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 5px 2px 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0.82rem;
+  }
+
+  .about-main {
+    padding: 32px 0 48px;
+  }
+
+  .about-heading {
+    margin-bottom: 26px;
+  }
+
+  .about-heading h1 {
+    font-size: clamp(2.8rem, 12vw, 4rem);
+    line-height: 1.08;
+  }
+
+  .about-heading > p:last-child {
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  .about-profile {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .about-image-wrap {
+    height: 320px;
+    min-height: 0;
+    border-radius: 10px;
+  }
+
+  .about-image-wrap img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .about-image-label {
+    right: 12px;
+    bottom: 14px;
+    font-size: 0.62rem;
+  }
+
+  .about-panel {
+    margin-bottom: 16px;
+    padding: 22px 18px;
+    border-radius: 9px;
+  }
+
+  .about-panel h2 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .about-panel p {
+    font-size: 0.93rem;
+    line-height: 1.75;
+  }
+
+  .about-goal {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  .about-tags {
+    gap: 7px;
+    margin-top: 18px;
+  }
+
+  .about-tags span {
+    font-size: 0.75rem;
+  }
+
+  .about-button {
+    min-height: 46px;
+    padding-inline: 18px;
+  }
+
+  .about-learning-grid,
+  .about-stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 11px;
+    margin: 20px 0;
+  }
+
+  .about-step,
+  .about-stats-grid article {
+    padding: 19px;
+  }
+
+  .about-step h3 {
+    font-size: 1.15rem;
+  }
+
+  .about-step p {
+    font-size: 0.9rem;
+  }
+
+  .about-stats-grid strong {
+    font-size: 2.3rem;
+  }
+
+  .about-bottom-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+    margin: 22px 0 8px;
+  }
+
+  .about-bottom-actions .about-button {
+    width: 100%;
+  }
+
+  .about-text-link {
+    align-self: flex-start;
+  }
+
+  .about-footer {
+    padding: 20px 0 26px;
+    overflow-wrap: anywhere;
+  }
+
+  .about-top-button {
+    right: 14px;
+    bottom: 14px;
+    padding: 10px 13px;
+  }
+}
+
+@media (max-width: 390px) {
+  .about-page {
+    padding-inline: 13px;
+  }
+
+  .about-image-wrap {
+    height: 285px;
+  }
+
+  .about-panel {
+    padding: 19px 15px;
+  }
+
+  .about-heading h1 {
+    font-size: 2.65rem;
+  }
+}

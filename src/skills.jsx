@@ -298,9 +298,9 @@ function Skills() {
           </section>
 
           <div className="skills-bottom">
-            <a href="/education">← Previous: Education</a>
+            {/*<a href="/education">← Previous: Education</a>
 
-            {/*<button type="button" onClick={scrollToTop}>
+            <button type="button" onClick={scrollToTop}>
               Back to top ↑
             </button>*/}
 

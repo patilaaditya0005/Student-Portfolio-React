@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import "./mobile.css";
 
 import About from "./about";
 import Education from "./education";
